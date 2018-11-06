@@ -10,9 +10,9 @@ namespace CiZoochilpan.Areas.Animales.Models
         public int id { get; set; }
         public string nombreCientifico { get; set; }
         public string nombreComun { get; set; }
-        public string familia { get; set; }
+        public string orden { get; set; }
         public string clase { get; set; }
-        public int idOrden { get; set; }
+        public int idFamilia { get; set; }
         public int idEspecie { get; set; }
         public string habitat { get; set; }
         public string gestacion { get; set; }

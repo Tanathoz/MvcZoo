@@ -1,0 +1,106 @@
+﻿@model IEnumerable<CiZoochilpan.Areas.Animales.Models.Animal>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Gestión de Animales</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreCientifico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreComun)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.orden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idFamilia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idEspecie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.habitat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gestacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.camada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.longevidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.peso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ubicacionGeografica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.alimentacion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreCientifico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreComun)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.orden)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idFamilia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idEspecie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.habitat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gestacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.camada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.longevidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.peso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ubicacionGeografica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alimentacion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

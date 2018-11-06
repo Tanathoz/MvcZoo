@@ -8,7 +8,9 @@ namespace CiZoochilpan.Areas.Animales.Models
     public class Especie
     {
         public int id { get; set; }
+        public int idFamilia { get; set; }
         public string nombre { get; set; }
+
 
     }
 }

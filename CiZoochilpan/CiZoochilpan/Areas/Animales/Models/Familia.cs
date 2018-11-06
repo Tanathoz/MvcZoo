@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CiZoochilpan.Areas.Animales.Models
 {
-    public class Orden
+    public class Familia
     {
         public int id { get; set; }
         public string nombre { get; set; }
