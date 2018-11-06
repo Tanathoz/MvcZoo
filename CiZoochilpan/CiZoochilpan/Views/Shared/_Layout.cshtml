@@ -17,10 +17,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Zoochilpan", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">&nbsp;&nbsp;&nbsp;&nbsp; Control Animal <span class="caret" ></span></a> 
+                                         <ul class="dropdown-menu" role="menu">
+                                             <li> Fauna</li>
+                                             <li>@Html.ActionLink("Animales", "Index", "Animal") </li>
+                                             <li>@Html.ActionLink("Ejemplares", "Index", "Ejemplar") </li>
+                                             <li>Taxonomia </li>
+                                             <li>@Html.ActionLink("Familias", "Create", "Familia") </li>
+                                             <li>@Html.ActionLink("Especies", "Create", "Especie") </li>
+                                         </ul>
+                    </li>
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
