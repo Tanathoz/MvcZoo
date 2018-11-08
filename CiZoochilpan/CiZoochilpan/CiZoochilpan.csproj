@@ -149,6 +149,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Animales\AnimalesAreaRegistration.cs" />
     <Compile Include="Areas\Animales\Controllers\AnimalController.cs" />
+    <Compile Include="Areas\Animales\Controllers\EspecieController.cs" />
+    <Compile Include="Areas\Animales\Controllers\FamiliaController.cs" />
     <Compile Include="Areas\Animales\Models\Animal.cs" />
     <Compile Include="Areas\Animales\Models\Especie.cs" />
     <Compile Include="Areas\Animales\Models\Familia.cs" />
@@ -175,6 +177,8 @@
     <Content Include="Areas\Animales\Views\web.config" />
     <Content Include="Areas\Animales\Views\Animal\Create.cshtml" />
     <Content Include="Areas\Animales\Views\Animal\Index.cshtml" />
+    <Content Include="Areas\Animales\Views\Familia\Create.cshtml" />
+    <Content Include="Areas\Animales\Views\Especie\Create.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -4,14 +4,33 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<SelectListItem> lstClases = new List<SelectListItem>();
-    lstClases.Add(new SelectListItem { Text = "Anfibios", Value = "Anfibios", Selected = true });
+    lstClases.Add(new SelectListItem { Text = "Anfibios", Value = "Anfibios" });
     lstClases.Add(new SelectListItem { Text = "Aves", Value = "Anfibios" });
     lstClases.Add(new SelectListItem { Text = "Mamiferos", Value = "Mamiferos" });
     lstClases.Add(new SelectListItem { Text = "Peces", Value = "Peces" });
     lstClases.Add(new SelectListItem { Text = "Reptiles", Value = "Reptiles" });
 
     List<SelectListItem> lstOrden = new List<SelectListItem>();
-    lstOrden.Add(new SelectListItem { Text = "--Seleccione clase", Value = "", Selected = true });
+    lstOrden.Add(new SelectListItem { Text = "--Seleccione clase--", Value = "", Selected = true });
+
+    List<SelectListItem> lstHabitat = new List<SelectListItem>();
+    lstHabitat.Add(new SelectListItem { Text = "Altiplano", Value = "Altiplano" });
+    lstHabitat.Add(new SelectListItem { Text = "Arrecife de coral", Value = "Arrecife de coral" });
+    lstHabitat.Add(new SelectListItem { Text = "Bosque", Value = "Bosque" });
+    lstHabitat.Add(new SelectListItem { Text = "Desierto", Value = "Desierto" });
+    lstHabitat.Add(new SelectListItem { Text = "Lago", Value = "Lago" });
+    lstHabitat.Add(new SelectListItem { Text = "Marisma", Value = "Marisma" });
+    lstHabitat.Add(new SelectListItem { Text = "Montaña", Value = "Montaña" });
+    lstHabitat.Add(new SelectListItem { Text = "Océano", Value = "Océano" });
+    lstHabitat.Add(new SelectListItem { Text = "Pantano", Value = "Pantano" });
+    lstHabitat.Add(new SelectListItem { Text = "Pastizales", Value = "Pastizales" });
+    lstHabitat.Add(new SelectListItem { Text = "Playa", Value = "Playa" });
+    lstHabitat.Add(new SelectListItem { Text = "Pradera", Value = "Pradera" });
+    lstHabitat.Add(new SelectListItem { Text = "Quebrada", Value = "Quebrada" });
+    lstHabitat.Add(new SelectListItem { Text = "Región polar", Value = "Región polar" });
+    lstHabitat.Add(new SelectListItem { Text = "Sabana", Value = "Sabana" });
+    lstHabitat.Add(new SelectListItem { Text = "Selva", Value = "Selva" });
+
 
 }
 
@@ -29,7 +48,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nombreCientifico, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nombreCientifico, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.nombreCientifico, new { htmlAttributes = new { @class = "form-control", @placeholder = "Panthera Leo" } })
                 @Html.ValidationMessageFor(model => model.nombreCientifico, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,7 +73,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.orden, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.orden,lstOrden,"---Selecciona una clase---",new { htmlAttributes = new { @class = "form-control", @name="ordenDropDown" } })
+                @Html.DropDownListFor(model => model.orden,lstOrden, new { @class = "form-control", @id="ordenDropDown", @name="ordenDropDown" })
                 @Html.ValidationMessageFor(model => model.orden, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -80,7 +99,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.habitat, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.habitat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.habitat, lstHabitat, "---Selecciona Habitat---", new { @class = "form-control", @id = "habitatDropDown", @name = "habitatDropDown" })
                 @Html.ValidationMessageFor(model => model.habitat, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -88,7 +107,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.gestacion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.gestacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.gestacion, new { htmlAttributes = new { @class = "form-control", @placeholder=" 8 meses" } })
                 @Html.ValidationMessageFor(model => model.gestacion, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -96,7 +115,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.camada, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.camada, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.camada, new { htmlAttributes = new { @class = "form-control", @placeholder="1-4 crias" } })
                 @Html.ValidationMessageFor(model => model.camada, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -104,7 +123,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.longevidad, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.longevidad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.longevidad, new { htmlAttributes = new { @class = "form-control", @placeholder="20 - 30 años" } })
                 @Html.ValidationMessageFor(model => model.longevidad, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -112,7 +131,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.peso, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.peso, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.peso, new { htmlAttributes = new { @class = "form-control", @placeholder="10- 15 Kg" } })
                 @Html.ValidationMessageFor(model => model.peso, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -120,7 +139,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ubicacionGeografica, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ubicacionGeografica, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ubicacionGeografica, new { htmlAttributes = new { @class = "form-control", @placeholder="Sureste de America" } })
                 @Html.ValidationMessageFor(model => model.ubicacionGeografica, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -128,14 +147,19 @@
         <div class="form-group">
             @Html.LabelFor(model => model.alimentacion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.alimentacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.alimentacion, new { htmlAttributes = new { @class = "form-control", @placeholder="Pequeños mamiferos " } })
                 @Html.ValidationMessageFor(model => model.alimentacion, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <span class="input-group-btn">
+                    <button type="submit"  class="btn btn-success" >
+                    <span class="glyphicon glyphicon-plus" >            
+                    </span> 
+                    </button>
+                </span>
             </div>
         </div>
     </div>
@@ -178,34 +202,27 @@
          //   $("#familia").append('<option value="' + $(gestacn).val()+ '">' + $(gestacn).val()+ '</option>');
             var  indice,numOrdenes,indiceFam,idOrden
             var famiNombres = new Array();
-            alert(" cayo");
-            $("select[name=claseDropDown]").change(function () {
-                $('#orden').empty().append('elige una opcion');
+            
+            $("select[id=claseDropDown]").change(function () {
+                $('#ordenDropDown').empty().append('elige una opcion');
 
-                indice=$('select[name=claseDropDown]').prop('selectedIndex');
+                indice=$('select[id=claseDropDown]').prop('selectedIndex');
                 indice = parseInt(indice);
-                alert("index"+indice);
-
                 misordenes=eval("orden_" + indice)
                 num = misordenes.length
-
-                //if (clase2 != "...") {
-                    //si estaba definido, entonces coloco las opciones de los ordenes.
-                    //selecciono el array de provincia adecuado
+                alert("indice"+indice)
                 if(indice >=1) {
 
                     for (a = 0; a < num; a++)
                         $('<option value="' + eval("orden_" + indice)[a] + '">' + eval("orden_" + indice)[a] + '</option>').appendTo("#ordenDropDown");
 
-
-
                 }
 
-                if(indice<=0){
+                 if(indice<=0){
                     alert("se metio");
                     $("<option value='5'>Selecciona clase</option>").appendTo("#ordenDropDown");
 
-               }
+               } 
 
 
             });
