@@ -202,8 +202,32 @@
          //   $("#familia").append('<option value="' + $(gestacn).val()+ '">' + $(gestacn).val()+ '</option>');
             var  indice,numOrdenes,indiceFam,idOrden
             var famiNombres = new Array();
+            var selector = document.querySelector('#claseDropDown');
+            selector.addEventListener('change', function () {
+                $('#ordenDropDown').empty().append('elige una opcion');
+
+                indice = $('select[id=claseDropDown]').prop('selectedIndex');
+                indice = parseInt(indice);
+                misordenes = eval("orden_" + indice)
+                num = misordenes.length
+             
+                if (indice >= 1) {
+
+                    for (a = 0; a < num; a++)
+                        $('<option value="' + eval("orden_" + indice)[a] + '">' + eval("orden_" + indice)[a] + '</option>').appendTo("#ordenDropDown");
+
+                }
+
+                if (indice <= 0) {
+                    alert("se metio");
+                    $("<option value='5'>Selecciona clase</option>").appendTo("#ordenDropDown");
+
+                } 
+
+            });
+
             
-            $("select[id=claseDropDown]").change(function () {
+          /*  $("select[id=claseDropDown]").change(function () {
                 $('#ordenDropDown').empty().append('elige una opcion');
 
                 indice=$('select[id=claseDropDown]').prop('selectedIndex');
@@ -225,7 +249,7 @@
                } 
 
 
-            });
+            });/
             //evento de cambio de orden
 
             $("select[name=orden]").change(function () {

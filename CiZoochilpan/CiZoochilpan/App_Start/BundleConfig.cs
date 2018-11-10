@@ -22,9 +22,16 @@ namespace CiZoochilpan
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/apis").Include(
+                      "~/Scripts/scriptApi.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/miEstilo.css",
                       "~/Content/site.css"));
+
+           // bundles.Add(new StyleBundle("~/Content/css").Include(
+             //   "~/Content/miEstilo.css"));
         }
     }
 }

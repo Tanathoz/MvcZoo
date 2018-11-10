@@ -19,5 +19,9 @@ namespace CiZoochilpan.Areas.Animales.Controllers
             return View();
         }
 
+        public ActionResult PracticaApi()
+        {
+            return View();
+        }
     }
 }

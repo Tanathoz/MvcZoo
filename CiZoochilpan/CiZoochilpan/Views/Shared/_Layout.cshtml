@@ -31,6 +31,28 @@
                                              <li>@Html.ActionLink("Especies", "Create", "Especie") </li>
                                          </ul>
                     </li>
+
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">&nbsp;&nbsp;&nbsp;&nbsp; Control Alimenticio<span class="caret"></span> </a>
+                                         <ul class="dropdown-menu" role="menu">
+                                             <li>@Html.ActionLink("Dietas Animales","Index", "DietaAnimal" )</li>
+                                             <li>@Html.ActionLink("Dietas Ejemplares", "Index", "DietaEjemplar")</li>
+                                         </ul>
+                    </li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">&nbsp;&nbsp;&nbsp;&nbsp; Seguimiento De Salud<span class="caret"></span> </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Medicina Preventiva", "Index", "Profilaxis")</li>
+                            <li>@Html.ActionLink("Consulta Clinicas", "Index", "Consulta")</li>
+                            <li>@Html.ActionLink("Farmacos", "Index", "Farmaco")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">&nbsp;&nbsp;&nbsp;&nbsp; Mortalidad<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Necropsias","Index", "Necropsia")</li>
+                            <li>@Html.ActionLink("Siniestros","Index","Siniestro")</li>
+                        </ul>
+                    </li>
+
+                    <li class=""
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>

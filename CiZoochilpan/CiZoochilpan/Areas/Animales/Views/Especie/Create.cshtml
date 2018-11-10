@@ -46,4 +46,26 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        //sirve para archivos y hacer peticiones HTTP 
+        var request = new XMLHttpRequest();
+        //abrimos una nueva conexión e indicamos el tipo de petición Get y la url 
+        request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+        //accedemos al la información de respuesta desde la función onload
+        request.onload = function () {
+            // la variable datos contiene la respuesta de la api y es convertida a un arreglo de objetos
+            var datos = JSON.parse(this.response);
+            //Un estatus exitosa debe estar en el rango de 200 a 400, 404 not found
+            if (request.status >= 200 && request.status < 400) {
+                datos.forEach(movie => {
+                    console.log(movie.title, movie.director)
+                });
+            } else {
+                console.log('error');
+            }
+        }
+        // envió de petición
+        request.send();
+
+    </script>
 }
