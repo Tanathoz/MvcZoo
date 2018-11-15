@@ -5,29 +5,20 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using CiZoochilpan.Areas.Animales.Models;
+
 namespace CiZoochilpan.Areas.Animales.Controllers
 {
-    public class EspecieController : Controller
+    public class FilmController : Controller
     {
-        // GET: Animales/Especie
+        // GET: Animales/Film
         public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        public ActionResult PracticaApi()
         {
             IEnumerable<FilmViewModel> lstFilms = null;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://ghibliapi.herokuapp.com/");
                 //HTTP GET
-                var responseTask = client.GetAsync("fimls");
+                var responseTask = client.GetAsync("films");
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -37,8 +28,7 @@ namespace CiZoochilpan.Areas.Animales.Controllers
 
                     readTask.Wait();
                     lstFilms = readTask.Result;
-                }
-                else
+                }else
                 {
                     lstFilms = Enumerable.Empty<FilmViewModel>();
                     ModelState.AddModelError(string.Empty, "Server  error. contact administrador");
@@ -46,8 +36,7 @@ namespace CiZoochilpan.Areas.Animales.Controllers
 
                 }
             }
-            return View(lstFilms);
-            return View();
+                return View(lstFilms);
         }
     }
 }

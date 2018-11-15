@@ -28,7 +28,7 @@
                                              <li>@Html.ActionLink("Ejemplares", "Index", "Ejemplar") </li>
                                              <li>Taxonomia </li>
                                              <li>@Html.ActionLink("Familias", "Create", "Familia") </li>
-                                             <li>@Html.ActionLink("Especies", "Create", "Especie") </li>
+                                             <li>@Html.ActionLink("Especies", "Create", "Especie", new { Area= "Animales"}) </li>
                                          </ul>
                     </li>
 
@@ -39,11 +39,12 @@
                                          </ul>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">&nbsp;&nbsp;&nbsp;&nbsp; Seguimiento De Salud<span class="caret"></span> </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Medicina Preventiva", "Index", "Profilaxis")</li>
-                            <li>@Html.ActionLink("Consulta Clinicas", "Index", "Consulta")</li>
-                            <li>@Html.ActionLink("Farmacos", "Index", "Farmaco")</li>
-                        </ul>
+                                         <ul class="dropdown-menu" role="menu">
+                                             <li>@Html.ActionLink("Medicina Preventiva", "Index", "Profilaxis")</li>
+                                             <li>@Html.ActionLink("Consulta Clinicas", "Index", "Consulta")</li>
+                                             <li>@Html.ActionLink("Farmacos", "Index", "Farmaco")</li>
+                                             <li>@Html.ActionLink("Veterinarios", "Index", "Veterinario", new {Area ="Medicina"}, new {})</li>
+                                         </ul>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">&nbsp;&nbsp;&nbsp;&nbsp; Mortalidad<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">

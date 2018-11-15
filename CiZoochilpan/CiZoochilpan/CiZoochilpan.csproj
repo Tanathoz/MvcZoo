@@ -49,6 +49,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -151,9 +154,15 @@
     <Compile Include="Areas\Animales\Controllers\AnimalController.cs" />
     <Compile Include="Areas\Animales\Controllers\EspecieController.cs" />
     <Compile Include="Areas\Animales\Controllers\FamiliaController.cs" />
+    <Compile Include="Areas\Animales\Controllers\FilmController.cs" />
     <Compile Include="Areas\Animales\Models\Animal.cs" />
     <Compile Include="Areas\Animales\Models\Especie.cs" />
     <Compile Include="Areas\Animales\Models\Familia.cs" />
+    <Compile Include="Areas\Animales\Models\FilmViewModel.cs" />
+    <Compile Include="Areas\Medicina\Controllers\VeterinarioController.cs" />
+    <Compile Include="Areas\Medicina\Models\VeterinarioModel.cs" />
+    <Compile Include="Areas\Medicina\MedicinaAreaRegistration.cs" />
+    <Compile Include="Areas\Medicina\Models\VeterinarioViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -181,6 +190,11 @@
     <Content Include="Areas\Animales\Views\Familia\Create.cshtml" />
     <Content Include="Areas\Animales\Views\Especie\Create.cshtml" />
     <Content Include="Areas\Animales\Views\Especie\PracticaApi.cshtml" />
+    <Content Include="Areas\Animales\Views\Film\Index.cshtml" />
+    <Content Include="Areas\Medicina\Views\web.config" />
+    <Content Include="Areas\Medicina\Views\Veterinario\Index.cshtml" />
+    <Content Include="Areas\Medicina\Views\Veterinario\Create.cshtml" />
+    <Content Include="Areas\Medicina\Views\Veterinario\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -211,6 +225,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Animales\Views\Shared\" />
+    <Folder Include="Areas\Animales\Views\Veterinario\" />
+    <Folder Include="Areas\Medicina\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
