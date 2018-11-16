@@ -14,3 +14,129 @@
     color: #ffff00;
     background-color: #411c0e;
 }
+
+.btn-primary {
+    background-color: #E4A010;
+}
+.table .table {
+    background-color: #4cae4c;
+    text-transform: capitalize;
+}
+
+table td {
+    text-transform: capitalize;
+}
+
+table thead {
+    color: #fff;
+    background-color: #4cae4c;
+}
+
+.input .input {
+    text-transform: capitalize;
+}
+fieldset.scheduler-border {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow: 0px 0px 0px 0px #000;
+    box-shadow: 0px 0px 0px 0px #000;
+    margin-bottom: 0;
+}
+
+legend.scheduler-border {
+    width: inherit; /* Or auto */
+    padding: 0 0px; /* To give a bit of padding on the left and right */
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+h3 {
+    color: #E48B1A;
+    font-weight: normal;
+    font-size: 30px;
+    font-family: Arial;
+    text-transform: lowercase;
+}
+
+.opcion_iluminada {
+    font-family: Georgia,"Arial",Times,serif;
+    font-weight: normal;
+    text-shadow: 0 0 1px #000;
+    color: #411c0e;
+    font-size: 2em;
+    padding: 2px 0 0;
+    line-height: 1.2em;
+    margin: 0 0 10px;
+}
+
+.opcionfo {
+    
+    font-weight: 900;
+    text-shadow: 0 0 1px #000;
+    color: #411c0e;
+    font-size: 5em;
+    padding: 2px 0 0;
+    text-transform: capitalize;
+    line-height: 1.2em;
+    margin: 0 0 10px;
+}
+
+.opc3 {
+    background: #ECD078;
+    color: #542437;
+    font-size: 160%;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 115%;
+    margin-top: 5px;
+    padding: 0;
+}
+
+.panel-default > .panel-heading {
+    background-color: #ECD078;
+}
+
+.panel-body {
+    background: #f5e79e;
+}
+
+.btn-info {
+    background-color: limegreen;
+}
+
+    .btn-info.active {
+        background-color: limegreen;
+    }
+
+    .btn-info:hover {
+        color: #fff;
+        background-color: #1acd1c;
+        border-color: #411c0e;
+    }
+
+.btn-primary {
+    background-color: #E4A010;
+}
+
+.btn-primary:focus,
+ .btn-primary.focus {
+        color: #fff;
+        background-color: #E48B1A;
+        border-color: #411c0e;
+    }
+
+    .btn-primary:active,
+    .btn-primary.active,
+    .open > .dropdown-toggle.btn-primary {
+        color: #fff;
+        background-color: #E48B1A;
+        border-color: #411c0e;
+    }
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #E48B1A;
+        border-color: #411c0e;
+    }

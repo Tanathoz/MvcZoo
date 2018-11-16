@@ -9,51 +9,103 @@
 
 @if (TempData["Success"] != null)
 {
-<div class="alert alert-success alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;Registro éxitoso </span> </button>
-    @TempData["Success"].ToString();
-</div> 
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times; </span> </button>
+        @TempData["Success"].ToString()
+    </div>
 }
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidoPaterno)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidoMaterno)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sexo)
-        </th>
-        <th></th>
-    </tr>
+else if (TempData["Error"] != null)
+{
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidoPaterno)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidoMaterno)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sexo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times;  </span> </button>
+        @TempData["Error"].ToString()
+    </div>
 }
 
-</table>
+<div class="col-md-18">
+    <div class="panel panel-default">
+        <div class="panel-heading"> <center><h3 class="opcion_iluminada"> Gestión de Veterinarios </h3> </center> </div>
+        <div class="panel-body">
+            <a href="@Url.Action("Create", "Veterinario" )" class="btn btn-success btn-xs" >
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </a>
+            <form method="get" class="navbar-form navbar-right" role="search">
+                <div class="input-group ">
+                    <input type="text" class="form-control" name="search" placeholder="Buscar..." />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search"> </span>
+                            <i class="fa fa-search">Buscar </i>
+                        </button>
+                    </span>
+
+                </div>
+            </form>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.apellidoPaterno)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.apellidoMaterno)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.sexo)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.apellidoPaterno)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.apellidoMaterno)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.sexo)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Veterinario", new { id= item.id } )" class="btn btn-primary btn-xs">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </a>
+                            <a href="@Url.Action("Delete", "Veterinario", new { id= item.id } )" class="btn btn-danger btn-xs">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="return Confirmacion();"></span>
+                            </a>
+
+                            <!--@Html.ActionLink("Edi", "Edit", new { id = item.id }, new { @class = "btn btn-primary btn-xs  glyphicon glyphicon-pencil" }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.id })-->
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+            function Confirmacion() {
+                var flag = confirm('Estas seguro de borrar este registro?');
+                if (flag) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+    </script>
+}

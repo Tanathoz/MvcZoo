@@ -64,7 +64,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
             }
 
             ModelState.AddModelError(string.Empty, "Server Error. contacta con el administrador");
-            ViewData["Error"] = "Espantoso";
+            TempData["Error"] = "Ha Ocurrido un error al intentar guardar ";
             return View(veterinario);
         }
 
@@ -103,9 +103,12 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
                 var result = putTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
+                    TempData["Success"] = "Se ha editado  un veterinario de forma exitosa";
                     return RedirectToAction("Index");
                 }
             }
+
+            TempData["Error"] = "Ha Ocurrido un error al intentar actualizar ";
             return View(veterinario);
         }
 
@@ -121,10 +124,11 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
                 var result = deleteTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
+                    TempData["Success"] = "Se ha eliminado un veterinario de forma exitosa";
                     return RedirectToAction("Index");
                 }
             }
-
+            TempData["Error"] = "Ha Ocurrido un error al Eliminar ";
             return RedirectToAction("Index");
         }
 
