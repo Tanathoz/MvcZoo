@@ -27,21 +27,25 @@ else if (TempData["Error"] != null)
     <div class="panel panel-default">
         <div class="panel-heading"> <center><h3 class="opcion_iluminada"> Gestión de Veterinarios </h3> </center> </div>
         <div class="panel-body">
-            <a href="@Url.Action("Create", "Veterinario" )" class="btn btn-success btn-xs" >
+            <a href="@Url.Action("Create", "Veterinario" )" class="btn btn-success btn-xl">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             </a>
-            <form method="get" class="navbar-form navbar-right" role="search">
-                <div class="input-group ">
-                    <input type="text" class="form-control" name="search" placeholder="Buscar..." />
-                    <span class="input-group-btn">
+           
+             <form method="get" class="navbar-form navbar-right" role="search" asp-controller="Veterinario" asp-action="Index" >
+              <div class="input-group ">
+
+                  <input type="text" class="form-control" name="textoBuscar" placeholder="Buscar..."  asp-for="textoBuscar"/>
+
+                  <span class="input-group-btn">
                         <button class="btn btn-default" type="submit">
                             <span class="glyphicon glyphicon-search"> </span>
                             <i class="fa fa-search">Buscar </i>
                         </button>
-                    </span>
+                       
+                  </span>
 
-                </div>
-            </form>
+              </div>
+             </form>
 
             <table class="table">
                 <tr>
@@ -84,8 +88,8 @@ else if (TempData["Error"] != null)
                             </a>
 
                             <!--@Html.ActionLink("Edi", "Edit", new { id = item.id }, new { @class = "btn btn-primary btn-xs  glyphicon glyphicon-pencil" }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.id })-->
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })-->
                         </td>
                     </tr>
                 }

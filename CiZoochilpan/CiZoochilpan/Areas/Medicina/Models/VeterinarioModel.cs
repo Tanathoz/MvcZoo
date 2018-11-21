@@ -12,6 +12,6 @@ namespace CiZoochilpan.Areas.Animales.Models
         public string apellidoPaterno { get; set; }
         public string apellidoMaterno { get; set; }
         public string sexo { get; set; }
-
+        public string textoBuscar { get; set; }
     }
 }

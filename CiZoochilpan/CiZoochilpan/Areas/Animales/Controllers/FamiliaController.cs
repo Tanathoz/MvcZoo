@@ -11,6 +11,7 @@ namespace CiZoochilpan.Areas.Animales.Controllers
         // GET: Animales/Familia
         public ActionResult Index()
         {
+
             return View();
         }
 
@@ -18,5 +19,10 @@ namespace CiZoochilpan.Areas.Animales.Controllers
         {
             return View();
         }
+        /*[HttpPost]
+        public ActionResult Create()
+        {
+
+        } */
     }
 }

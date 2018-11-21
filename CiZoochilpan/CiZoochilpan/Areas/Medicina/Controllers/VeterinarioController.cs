@@ -5,36 +5,63 @@ using System.Web;
 using System.Web.Mvc;
 using CiZoochilpan.Areas.Medicina.Models;
 using System.Net.Http;
+using System.Threading.Tasks;
+
 namespace CiZoochilpan.Areas.Medicina.Controllers
 {
     public class VeterinarioController : Controller
     {
         // GET: Medicina/Veterinario
-        public ActionResult Index()
+        public async Task<ActionResult> Index(string textoBuscar )
         {
-
-             IEnumerable<VeterinarioViewModel> lstVeterinario = null;
+             IEnumerable<VeterinarioViewModel> lstVeterinario = null;           
              using (var client = new HttpClient())
              {
-                 client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
-                 //HTTP GET
-                 var responseTask = client.GetAsync("Veterinario");
-                 responseTask.Wait();
-                 var result = responseTask.Result;
 
-                 if (result.IsSuccessStatusCode)
-                 {
-                     var readTask = result.Content.ReadAsAsync<IList<VeterinarioViewModel>>();
-                     readTask.Wait();
-                     lstVeterinario = readTask.Result;
-                     Console.WriteLine("Exito al consultar la Api");
-                 }
-                 else
-                 {
-                     lstVeterinario = Enumerable.Empty<VeterinarioViewModel>();
-                     ModelState.AddModelError(string.Empty, "Error al obtener los datos de los veterinarios");
-                     Console.WriteLine("Error al obtener los datos");
-                 }
+                if (textoBuscar == string.Empty || textoBuscar == null)
+                {
+                    client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                    //HTTP GET
+                    var responseTask = client.GetAsync("Veterinario");
+                     responseTask.Wait();
+                    var result = responseTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var readTask = result.Content.ReadAsAsync<IList<VeterinarioViewModel>>();
+                        readTask.Wait();
+                        lstVeterinario = readTask.Result;
+                        Console.WriteLine("Exito al consultar la Api");
+                    }
+                    else
+                    {
+                        lstVeterinario = Enumerable.Empty<VeterinarioViewModel>();
+                        ModelState.AddModelError(string.Empty, "Error al obtener los datos de los veterinarios");
+                        Console.WriteLine("Error al obtener los datos");
+                    }
+                }
+                else
+                {
+                    client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                    var responseTask = client.GetAsync("Veterinario?valor=" + textoBuscar);
+                    responseTask.Wait();
+                    var result = responseTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var readTask = result.Content.ReadAsAsync<IList<VeterinarioViewModel>>();
+                        readTask.Wait();
+                        lstVeterinario = readTask.Result;
+                        Console.WriteLine("Exito al consultar la Api");
+                    }
+                    else
+                    {
+                        lstVeterinario = Enumerable.Empty<VeterinarioViewModel>();
+                        ModelState.AddModelError(string.Empty, "Error al obtener los datos de los veterinarios");
+                        Console.WriteLine("Error al obtener los datos");
+                    }
+                }
+
+              
+                
              }
 
              return View(lstVeterinario); 
