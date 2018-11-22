@@ -19,6 +19,27 @@ namespace CiZoochilpan.Areas.Animales.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Create(Especie especie)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/Especie");
+                var postTask = client.PostAsJsonAsync<Especie>("Especie", especie);
+                postTask.Wait();
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    TempData["Success"] = "Se ha registrado una nueva familia exitosamente";
+                    return RedirectToAction("Index", "Home",new { area = "" });
+
+                }
+            }
+            ModelState.AddModelError(string.Empty, "Server Error. contacta con el administrador");
+            TempData["Error"] = "Ha Ocurrido un error al intentar guardar ";
+            return View(especie);
+        }
+
 
         public ActionResult PracticaApi()
         {

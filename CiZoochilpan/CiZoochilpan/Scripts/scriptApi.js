@@ -1,4 +1,5 @@
 ﻿
+    
     const app = document.getElementById('root');
     //console.log(app);
     const contenedor = document.createElement('div');
@@ -7,8 +8,9 @@
 
     //sirve para archivos y hacer peticiones HTTP
     var request = new XMLHttpRequest();
+
     //abrimos una nueva conexión e indicamos el tipo de petición Get y la url
-    request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
     //accedemos al la información de respuesta desde la función onload
         request.onload = function () {
             // la variable datos contiene la respuesta de la api y es convertida a un arreglo de objetos
@@ -53,7 +55,7 @@
 // envió de petición
 request.send();
 
-fetch('https://ghibliapi.herokuapp.com/films')
+fetch('http://tanathoz-001-site1.ctempurl.com/api/Especie')
             .then(function (response) {
                 return response.json();
 })

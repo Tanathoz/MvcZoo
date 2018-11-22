@@ -27,6 +27,8 @@ $(document).ready(function () {
     var indice, numOrdenes, indiceFam, idOrden
     var famiNombres = new Array();
     var selector = document.querySelector('#claseDropDown');
+    var ordenSelect = document.querySelector('#ordenDropDown');
+
     selector.addEventListener('change', function () {
         $('#ordenDropDown').empty().append('elige una opcion');
 
@@ -34,20 +36,55 @@ $(document).ready(function () {
         indice = parseInt(indice);
         misordenes = eval("orden_" + indice)
         num = misordenes.length
-        alert("indice" + indice);
+        //alert("indice" + indice);
         if (indice >= 1) {
 
-            for (a = 0; a < num; a++)
-                $('<option value="' + eval("orden_" + indice)[a] + '">' + eval("orden_" + indice)[a] + '</option>').appendTo("#ordenDropDown");
+            if (indice == 1)
+                numOrdenes = 0;
+            else if (indice == 2)
+                numOrdenes = 4;
+            else if (indice == 3)
+                numOrdenes = 37;
+            else if (indice == 4)
+                numOrdenes = 60;
+            else
+                numOrdenes = 66;
 
+            
+
+
+            for (a = 0; a < num; a++) {
+                idOrden = numOrdenes + a;
+                $('<option value="' + idOrden + '">' + eval("orden_" + indice)[a] + '</option>').appendTo("#ordenDropDown");
+            }
         }
 
         if (indice <= 0) {
-            alert("se metio");
+           // alert("se metio");
             $("<option value='5'>Selecciona clase</option>").appendTo("#ordenDropDown");
 
         }
 
     });
 
+
+    //sirve para archivos y hacer peticiones HTTP
+    var request = new XMLHttpRequest();
+    request.open('GET', 'http://tanathoz-001-site1.ctempurl.com/api/Especie');
+    request.onreadystatechange = function () {
+        if (request.readyState == 4) {
+            console.log("los datos");
+        } else {
+            dump("Erroe loading page");
+        }
+    };
+    request.send(null);
+
+    ordenSelect.addEventListener('change', function () {
+        
+
+
+      
+       
+    }); 
 });

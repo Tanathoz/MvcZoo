@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using CiZoochilpan.Areas.Animales.Models;
+using System.Net.Http;
+using System.Data;
 namespace CiZoochilpan.Areas.Animales.Controllers
 {
     public class FamiliaController : Controller
@@ -19,10 +21,25 @@ namespace CiZoochilpan.Areas.Animales.Controllers
         {
             return View();
         }
-        /*[HttpPost]
-        public ActionResult Create()
+        [HttpPost]
+        public ActionResult Create( Familia familia)
         {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/Familia");
+                var postTask = client.PostAsJsonAsync<Familia>("Familia", familia);
+                postTask.Wait();
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    TempData["Success"] = "Se ha registrado una nueva familia exitosamente";
+                    return RedirectToAction("Index", "Home",new { area = "" });
 
-        } */
+                }
+            }
+            ModelState.AddModelError(string.Empty, "Server Error. contacta con el administrador");
+            TempData["Error"] = "Ha Ocurrido un error al intentar guardar ";
+            return View(familia);
+        } 
     }
 }
