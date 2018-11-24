@@ -24,10 +24,11 @@ var orden_5 = new Array("Seleccione orden", "Crocodylia", "Rhynchocephalia", "Sq
 $(document).ready(function () {
 
     //   $("#familia").append('<option value="' + $(gestacn).val()+ '">' + $(gestacn).val()+ '</option>');
-    var indice, numOrdenes, indiceFam, idOrden
+    var indice, numOrdenes, indiceFam, idOrden 
     var famiNombres = new Array();
     var selector = document.querySelector('#claseDropDown');
     var ordenSelect = document.querySelector('#ordenDropDown');
+    var familiaSelect = document.querySelector('#familiaDropDown');
 
     selector.addEventListener('change', function () {
         $('#ordenDropDown').empty().append('elige una opcion');
@@ -68,23 +69,65 @@ $(document).ready(function () {
     });
 
 
-    //sirve para archivos y hacer peticiones HTTP
-    var request = new XMLHttpRequest();
-    request.open('GET', 'http://tanathoz-001-site1.ctempurl.com/api/Especie');
-    request.onreadystatechange = function () {
-        if (request.readyState == 4) {
-            console.log("los datos");
-        } else {
-            dump("Erroe loading page");
-        }
-    };
-    request.send(null);
-
     ordenSelect.addEventListener('change', function () {
-        
+        idOrden = $('select[id=ordenDropDown]').val();
+        idOrden = parseInt(idOrden);
+       /* fetch('http://tanathoz-001-site1.ctempurl.com/api/Familia?id=29')
+            .then(function (response) {
 
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(JSON.stringify(myJson));
+            }).catch(function (error) {
 
+                console.log("hubo un problema al obtener  la petición fetch:" + error.message);
+            }); */
+
+        fetch('http://tanathoz-001-site1.ctempurl.com/api/Familia?id=' + idOrden + '')
+            .then(function (response) {
+
+                return response.json();
+                for (var i = 0; i < response.length; i++) {
+                    console.log(response[i].nombre);
+                }
+            })
+            .then(function (myJson) {
+                $("#familiaDropDown").empty().append('<option value="1"> Seleciona Familia</option>');
+                for (var i = 0; i < myJson.length; i++) {
+                    console.log(myJson[i].nombre);
+                    $('<option value="' + myJson[i].idFam + '">' + myJson[i].nombre + '</option>').appendTo("#familiaDropDown");
+                }
+                console.log(JSON.stringify(myJson));
+            }).catch(function (error) {
+                $("#familiaDropDown").empty().append('<option value="1"> No hay familias</option>');
+                console.log("hubo un problema al obtener  la petición fetch:" + error.message);
+            });
       
        
     }); 
+
+    familiaSelect.addEventListener('change', function () {
+        
+        indiceFam = $('select[id=familiaDropDown]').val();
+        indiceFam = parseInt(indiceFam);
+        console.log("indice familia" + indiceFam);
+        fetch('http://tanathoz-001-site1.ctempurl.com/api/Especie?id=' + indiceFam + '')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                $("#especieDropDown").empty().append('<option value="1"> Seleciona Especie</option>');
+                for (var i = 0; i < myJson.length; i++) {
+                    console.log(myJson[i].nombre);
+                    $('<option value="' + myJson[i].idEspecie + '">' + myJson[i].nombre + '</option>').appendTo("#especieDropDown");
+                }
+                console.log(JSON.stringify(myJson));
+            }).catch(function (error) {
+                $("#especieDropDown").empty().append('<option value="1"> No hay especies</option>');
+                console.log("hubo un problema al obtener  la petición fetch:" + error.message);
+            });
+
+    })
+
 });

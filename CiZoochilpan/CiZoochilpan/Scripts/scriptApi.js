@@ -55,7 +55,7 @@ request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
 // envió de petición
 request.send();
 
-fetch('http://tanathoz-001-site1.ctempurl.com/api/Especie')
+fetch('http://tanathoz-001-site1.ctempurl.com/api/Familia?id=29')
             .then(function (response) {
                 return response.json();
 })
