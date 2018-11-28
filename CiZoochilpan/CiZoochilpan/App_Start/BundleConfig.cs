@@ -28,6 +28,12 @@ namespace CiZoochilpan
             bundles.Add(new ScriptBundle("~/bundles/orden").Include(
                       "~/Scripts/CargarOrdenes.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/animal").Include(
+                      "~/Scripts/AnimalScript.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/editAnimal").Include(
+                     "~/Scripts/EditarAnimal.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/miEstilo.css",

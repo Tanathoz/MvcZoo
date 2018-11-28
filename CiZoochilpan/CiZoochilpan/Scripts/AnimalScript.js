@@ -24,7 +24,7 @@ var orden_5 = new Array("Seleccione orden", "Crocodylia", "Rhynchocephalia", "Sq
 $(document).ready(function () {
 
     //   $("#familia").append('<option value="' + $(gestacn).val()+ '">' + $(gestacn).val()+ '</option>');
-    var indice, numOrdenes, indiceFam, idOrden 
+    var indice, numOrdenes, indiceFam, idOrden
     var famiNombres = new Array();
     var selector = document.querySelector('#claseDropDown');
     var ordenSelect = document.querySelector('#ordenDropDown');
@@ -35,8 +35,9 @@ $(document).ready(function () {
 
         indice = $('select[id=claseDropDown]').prop('selectedIndex');
         indice = parseInt(indice);
-        misordenes = eval("orden_" + indice)
-        num = misordenes.length
+        misordenes = eval("orden_" + indice);
+        num = misordenes.length;
+        
         //alert("indice" + indice);
         if (indice >= 1) {
 
@@ -51,7 +52,7 @@ $(document).ready(function () {
             else
                 numOrdenes = 66;
 
-            
+
 
 
             for (a = 0; a < num; a++) {
@@ -61,7 +62,7 @@ $(document).ready(function () {
         }
 
         if (indice <= 0) {
-           // alert("se metio");
+            // alert("se metio");
             $("<option value='5'>Selecciona clase</option>").appendTo("#ordenDropDown");
 
         }
@@ -71,19 +72,22 @@ $(document).ready(function () {
 
     ordenSelect.addEventListener('change', function () {
         idOrden = $('select[id=ordenDropDown]').val();
-        idOrden = parseInt(idOrden);
         
-       /* fetch('http://tanathoz-001-site1.ctempurl.com/api/Familia?id=29')
-            .then(function (response) {
-
-                return response.json();
-            })
-            .then(function (myJson) {
-                console.log(JSON.stringify(myJson));
-            }).catch(function (error) {
-
-                console.log("hubo un problema al obtener  la petición fetch:" + error.message);
-            }); */
+        idOrden = parseInt(idOrden);
+        var OptionOrden = document.getElementById("ordenDropDown");
+        var ord = document.getElementById("orden");
+        ord.value = OptionOrden.options[OptionOrden.selectedIndex].text;
+        /* fetch('http://tanathoz-001-site1.ctempurl.com/api/Familia?id=29')
+             .then(function (response) {
+ 
+                 return response.json();
+             })
+             .then(function (myJson) {
+                 console.log(JSON.stringify(myJson));
+             }).catch(function (error) {
+ 
+                 console.log("hubo un problema al obtener  la petición fetch:" + error.message);
+             }); */
 
         fetch('http://tanathoz-001-site1.ctempurl.com/api/Familia?id=' + idOrden + '')
             .then(function (response) {
@@ -104,15 +108,16 @@ $(document).ready(function () {
                 $("#familiaDropDown").empty().append('<option value="1"> No hay familias</option>');
                 console.log("hubo un problema al obtener  la petición fetch:" + error.message);
             });
-      
-       
-    }); 
+
+
+    });
 
     familiaSelect.addEventListener('change', function () {
-        
+
         indiceFam = $('select[id=familiaDropDown]').val();
         indiceFam = parseInt(indiceFam);
-        console.log("indice familia" + indiceFam);
+        console.log("indice familia") + indiceFam;
+
         var selectedOption = document.getElementById("familiaDropDown");
         var famy = document.getElementById("familia");
         famy.value = selectedOption.options[selectedOption.selectedIndex].text;
@@ -125,7 +130,7 @@ $(document).ready(function () {
                 $("#especieDropDown").empty().append('<option value="1"> Seleciona Especie</option>');
                 for (var i = 0; i < myJson.length; i++) {
                     console.log(myJson[i].nombre);
-                    $('<option value="' + myJson[i].idEspecie + '">' + myJson[i].nombre + '</option>').appendTo("#especieDropDown");
+                    $('<option value="' + myJson[i].nombre + '">' + myJson[i].nombre + '</option>').appendTo("#especieDropDown");
                 }
                 console.log(JSON.stringify(myJson));
             }).catch(function (error) {

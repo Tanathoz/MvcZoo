@@ -179,6 +179,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\AnimalScript.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -195,8 +196,10 @@
     <Content Include="Areas\Medicina\Views\Veterinario\Index.cshtml" />
     <Content Include="Areas\Medicina\Views\Veterinario\Create.cshtml" />
     <Content Include="Areas\Medicina\Views\Veterinario\Edit.cshtml" />
+    <Content Include="Areas\Animales\Views\Animal\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CargarOrdenes.js" />
+    <Content Include="Scripts\EditarAnimal.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
