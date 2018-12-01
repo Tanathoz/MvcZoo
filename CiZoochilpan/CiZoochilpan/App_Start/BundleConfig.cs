@@ -13,6 +13,7 @@ namespace CiZoochilpan
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
+          
 
             // Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información. De este modo, estará
             // para la producción, use la herramienta de compilación disponible en https://modernizr.com para seleccionar solo las pruebas que necesite.
@@ -21,6 +22,10 @@ namespace CiZoochilpan
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/datetime").Include(
+              "~/Scripts/moment*",
+              "~/Scripts/bootstrap-datetimepicker*"));
 
             bundles.Add(new ScriptBundle("~/bundles/apis").Include(
                       "~/Scripts/scriptApi.js"));
@@ -36,6 +41,7 @@ namespace CiZoochilpan
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-datetimepicker.css",
                       "~/Content/miEstilo.css",
                       "~/Content/site.css"));
 

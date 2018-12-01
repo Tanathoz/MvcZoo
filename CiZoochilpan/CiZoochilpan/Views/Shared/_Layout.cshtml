@@ -27,7 +27,7 @@
                                          <ul class="dropdown-menu" role="menu">
                                              <li> Fauna</li>
                                              <li>@Html.ActionLink("Animales", "Index", "Animal", new { Area = "Animales" }, new { }) </li>
-                                             <li>@Html.ActionLink("Ejemplares", "Index", "Ejemplar") </li>
+                                             <li>@Html.ActionLink("Ejemplares", "Index", "Ejemplar", new { Area = "Animales"}, new { } ) </li>
                                              <li>Taxonomia </li>
                                              <li>@Html.ActionLink("Familias", "Create", "Familia" , new { Area="Animales"}, new {}) </li>
                                              <li>@Html.ActionLink("Especies", "Create", "Especie", new { Area= "Animales"}, new {}) </li>

@@ -1,0 +1,140 @@
+﻿@model CiZoochilpan.Areas.Animales.Models.EjemplarViewModel
+
+@{
+    ViewBag.Title = "edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> lstAnimales = new List<SelectListItem>();
+    lstAnimales.Add(new SelectListItem { Text = "--Seleccione animal--", Value = "", Selected = true });
+}
+
+<h2>edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>EjemplarViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.marcaje, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.marcaje, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.marcaje, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idAnimal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.idAnimal, lstAnimales, new { @class = "form-control", @id = "animalDropDown", @name = "animalDropDown" })
+                @Html.ValidationMessageFor(model => model.idAnimal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nombreComun, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombreComun, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nombreComun, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fechaNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fechaAlta, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fechaAlta, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fechaAlta, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sexo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sexo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sexo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nombrePropio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombrePropio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nombrePropio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            var idAnimal, numAnimales=0;
+            var animalSelect = document.querySelector('#animalDropDown');
+            idOrden = $('select[id=animalDropDown]').val();
+            var OptionOrden = document.getElementById("animalDropDown");
+             var modelo = @Html.Raw(Json.Encode(Model));
+         //   var ord = document.getElementById("orden");
+           // ord.value = OptionOrden.options[OptionOrden.selectedIndex].text;
+           
+
+            fetch('http://tanathoz-001-site1.ctempurl.com/api/Animal')
+                .then(function (response) {
+
+                    return response.json();
+                    for (var i = 0; i < response.length; i++) {
+                        console.log(response[i].nombre);
+                    }
+                })
+                .then(function (myJson) {
+                    $("#animalDropDown").empty().append('<option value=""> Seleciona Familia</option>');
+                    for (var i = 0; i < myJson.length; i++) {
+                        numAnimales = i;
+                        console.log(myJson[i].nombreComun);
+                        $('<option value="' + myJson[i].id + '">' + myJson[i].nombreComun + '</option>').appendTo("#animalDropDown");
+                    }
+                    console.log(JSON.stringify(myJson));
+
+                    if (numAnimales <= 1) {
+                        animalSelect.selectedIndex = 1;
+                    } else {
+                        for (var j = 0; j <= numAnimales + 1; j++) {
+                            console.log("Lo que sea");
+                            if ((animalSelect.options[j].text).localeCompare(modelo.nombreComun) == 0) {
+                                animalSelect.selectedIndex = j;
+                                break;
+                            }
+                        }
+                    }
+
+                }).catch(function (error) {
+                    $("#animalDropDown").empty().append('<option value=""> No hay animales</option>');
+                    console.log("hubo un problema al obtener  la petición fetch:" + error.message);
+                });
+        });
+
+
+    </script>
+}

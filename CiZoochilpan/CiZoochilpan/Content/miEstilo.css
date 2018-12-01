@@ -140,3 +140,8 @@ h3 {
         background-color: #E48B1A;
         border-color: #411c0e;
     }
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight {
+    background: color: red;
+    border: 1px solid lightred;
+}

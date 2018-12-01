@@ -120,7 +120,7 @@ namespace CiZoochilpan.Areas.Animales.Controllers
                 var result = putTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    TempData["Success"] = "Se ha registrado un nuevo animal exitosamente";
+                    TempData["Success"] = "Se ha actualizado un animal exitosamente";
                     return RedirectToAction("Index");
                 }
             }
@@ -133,7 +133,7 @@ namespace CiZoochilpan.Areas.Animales.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
-                var deleteTask = client.DeleteAsync("Animal/" + id.ToString());
+                var deleteTask = client.DeleteAsync("Animal/?id=" + id.ToString());
                 deleteTask.Wait();
                 var result = deleteTask.Result;
                 if (result.IsSuccessStatusCode)

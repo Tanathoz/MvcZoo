@@ -41,143 +41,153 @@
 }
 
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-heading"><center><h3 class="opcion_iluminada">Editar Animal</h3></center></div>
+                <div class="panel-body">
+                    <a href="@Url.Action("Index", "Animal" )" class="btn btn-primary btn-xs">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                    </a>
+                    <br />
+                    <br />
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-<h2>Edit</h2>
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.id)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nombreCientifico, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.nombreCientifico, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.nombreCientifico, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nombreComun, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.nombreComun, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.nombreComun, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.clase, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.clase, lstClases, "---Selecciona clase---", new { @class = "form-control", @id = "claseDropDown", @name = "claseDropDown" })
+                                    @Html.ValidationMessageFor(model => model.clase, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Animal</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.orden, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("ordenDropDown", lstOrden, new { @class = "form-control", @id = "ordenDropDown", @name = "ordenDropDown" })
+                                    @Html.ValidationMessageFor(model => model.orden, "", new { @class = "text-danger" })
+                                    @Html.HiddenFor(model => model.orden)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.nombreCientifico, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nombreCientifico, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.nombreCientifico, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.familia, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("familiaDropDown", lstFamilia, new { @class = "form-control", @id = "familiaDropDown", @name = "familiaDropDown" })
+                                    @Html.ValidationMessageFor(model => model.familia, "", new { @class = "text-danger" })
+                                    @Html.HiddenFor(model => model.familia)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.especie, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.especie, lstEspecie, new { @class = "form-control", @id = "especieDropDown", @name = "especieDropDown" })
+                                    @Html.ValidationMessageFor(model => model.especie, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.habitat, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.habitat, lstHabitat, "---Selecciona Habitat---", new { @class = "form-control", @id = "habitatDropDown", @name = "habitatDropDown" })
+                                    @Html.ValidationMessageFor(model => model.habitat, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.gestacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.gestacion, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.gestacion, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.camada, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.camada, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.camada, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.longevidad, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.longevidad, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.longevidad, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.peso, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.peso, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.peso, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ubicacionGeografica, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.ubicacionGeografica, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ubicacionGeografica, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.alimentacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.alimentacion, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.alimentacion, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Actualizar" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.nombreComun, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nombreComun, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.nombreComun, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-         <div class="form-group">
-            @Html.LabelFor(model => model.clase, htmlAttributes: new { @class = "control-label col-md-2" })
-             <div class="col-md-10">
-                 @Html.DropDownListFor(model => model.clase, lstClases, "---Selecciona clase---", new { @class = "form-control", @id = "claseDropDown", @name = "claseDropDown" })
-                 @Html.ValidationMessageFor(model => model.clase, "", new { @class = "text-danger" })
-             </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.orden, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.orden, lstOrden, new { @class = "form-control", @id = "ordenDropDown", @name = "ordenDropDown" })
-                @Html.ValidationMessageFor(model => model.orden, "", new { @class = "text-danger" })
-              
-            </div>
-        </div>
-
-       
-        <div class="form-group">
-            @Html.LabelFor(model => model.familia, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model=> model.familia, lstFamilia, new { @class = "form-control", @id = "familiaDropDown", @name = "familiaDropDown" })
-                @Html.ValidationMessageFor(model => model.familia, "", new { @class = "text-danger" })
-                <!--@Html.HiddenFor(model => model.familia) -->
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.especie, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.especie, lstEspecie, new { @class = "form-control", @id = "especieDropDown", @name = "especieDropDown" })
-                @Html.ValidationMessageFor(model => model.especie, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.habitat, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.habitat, lstHabitat, "---Selecciona Habitat---", new { @class = "form-control", @id = "habitatDropDown", @name = "habitatDropDown" })
-                @Html.ValidationMessageFor(model => model.habitat, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.gestacion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.gestacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.gestacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.camada, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.camada, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.camada, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.longevidad, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.longevidad, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.longevidad, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.peso, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.peso, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.peso, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ubicacionGeografica, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ubicacionGeografica, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ubicacionGeografica, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.alimentacion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.alimentacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.alimentacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script>
         var orden_1 = Array("Seleccione orden", "Anura", "Caudata", "Gymnophiona", "Mugiliformes");
         //4 ordenes
 
@@ -200,7 +210,7 @@
 //4 ordenes
         var numFamilias=0, indiceFam = null, numEspecies=0;
         $(document).ready(function () {
-           
+
             var indice, numOrdenes, idOrden;
             var selector = document.querySelector('#claseDropDown');
             var ordenSelect = document.querySelector('#ordenDropDown');
@@ -210,7 +220,7 @@
             indice = parseInt(indice);
             misordenes = eval("orden_" + indice);
             num = misordenes.length;
-           
+
 
             if (indice == 1)
                 numOrdenes = 0;
@@ -228,7 +238,7 @@
                 $('<option value="' + idOrden + '">' + eval("orden_" + indice)[a] + '</option>').appendTo("#ordenDropDown");
             }
             var modelo = @Html.Raw(Json.Encode(Model));
-            
+
             for (var i = 1; i < ordenSelect.length; i++) {
                 numFamilias++;
                 if ( (ordenSelect.options[i].text).localeCompare( modelo.orden) == 0) {
@@ -239,34 +249,37 @@
 
             idOrden = $('select[id=ordenDropDown]').val();
             idOrden = parseInt(idOrden);
-
+            var OptionOrden = document.getElementById("ordenDropDown");
+            var ord = document.getElementById("orden");
+            ord.value = OptionOrden.options[OptionOrden.selectedIndex].text;
             fetch('http://tanathoz-001-site1.ctempurl.com/api/Familia?id=' + idOrden + '')
                 .then(function (response) {
 
                     return response.json();
-                    
+
                 })
                 .then(function (myJson) {
                     $("#familiaDropDown").empty();
                     for (var i = 0; i < myJson.length; i++) {
 
                         numFamilias = i;
-                        
+
                         $('<option value="' + myJson[i].idFam + '">' + myJson[i].nombre + '</option>').appendTo("#familiaDropDown");
                     }
-                
+
                     for (var j = 1; j < numFamilias; j++) {
 
                         if ((familiaSelect.options[j].text).localeCompare(modelo.familia) == 0) {
                             familiaSelect.selectedIndex = j;
-                           
+
                             break;
                         }
                     }
                     indiceFam = document.getElementById("familiaDropDown").value;
                     indiceFam = parseInt(indiceFam);
-                    console.log("indice familia" + indiceFam);
-
+                    var selectedOption = document.getElementById("familiaDropDown");
+                    var famy = document.getElementById("familia");
+                    famy.value = selectedOption.options[selectedOption.selectedIndex].text;
                     fetch('http://tanathoz-001-site1.ctempurl.com/api/Especie?id=' + indiceFam + '')
                         .then(function (response) {
                             return response.json();
@@ -278,13 +291,17 @@
                                 console.log(myJson[i].nombre);
                                 $('<option value="' + myJson[i].nombre + '">' + myJson[i].nombre + '</option>').appendTo("#especieDropDown");
                             }
-                                console.log("Especie n"+numEspecies);
-                            for (var j = 0; j <= numEspecies; j++) {
-                                console.log("Lo que sea" );
-                                if ((especieSelect.options[j].text).localeCompare(modelo.especie) == 0) {
-                                    especieSelect.selectedIndex = j;
+                            console.log("Especie n" + numEspecies);
 
-                                    break;
+                            if (numEspecies <= 1 ) {
+                                especieSelect.selectedIndex = 1;
+                            } else {
+                                for (var j = 0; j <= numEspecies+1; j++) {
+                                    console.log("Lo que sea");
+                                    if ((especieSelect.options[j].text).localeCompare(modelo.especie) == 0) {
+                                        especieSelect.selectedIndex = j;
+                                        break;
+                                    }
                                 }
                             }
                             console.log(JSON.stringify(myJson));
@@ -298,15 +315,109 @@
                     console.log("hubo un problema al obtener  la petición fetch:" + error.message);
                 });
 
-            //indiceFam = document.getElementById("familiaDropDown").value;
-            //7indiceFam = parseInt(indiceFam);
-            //console.log("indice familia" + indiceFam);
+                //Eventos en caso de cambiar la clase, orden, familia o especie
+            selector.addEventListener('change', function () {
+                $('#ordenDropDown').empty().append('selecciona orden');
+                $('#familiaDropDown').empty().append('selecciona orden');
+                $('#especieDropDown').empty().append('selecciona familia');
+                indice = $('select[id=claseDropDown]').prop('selectedIndex');
+                indice = parseInt(indice);
+                misordenes = eval("orden_" + indice);
+                num = misordenes.length;
 
-           
+                //alert("indice" + indice);
+                if (indice >= 1) {
 
+                    if (indice == 1)
+                        numOrdenes = 0;
+                    else if (indice == 2)
+                        numOrdenes = 4;
+                    else if (indice == 3)
+                        numOrdenes = 37;
+                    else if (indice == 4)
+                        numOrdenes = 60;
+                    else
+                        numOrdenes = 66;
+
+
+
+
+                    for (a = 0; a < num; a++) {
+                        idOrden = numOrdenes + a;
+                        $('<option value="' + idOrden + '">' + eval("orden_" + indice)[a] + '</option>').appendTo("#ordenDropDown");
+                    }
+                }
+
+                if (indice <= 0) {
+                    // alert("se metio");
+                    $("<option value='5'>Selecciona clase</option>").appendTo("#ordenDropDown");
+
+                }
+
+            });
+
+            ordenSelect.addEventListener('change', function () {
+                $('#familiaDropDown').empty().append('selecciona familia');
+                $('#especieDropDown').empty().append('selecciona familia');
+                idOrden = $('select[id=ordenDropDown]').val();
+                idOrden = parseInt(idOrden);
+                var OptionOrden = document.getElementById("ordenDropDown");
+                var ord = document.getElementById("orden");
+                ord.value = OptionOrden.options[OptionOrden.selectedIndex].text;
+
+                fetch('http://tanathoz-001-site1.ctempurl.com/api/Familia?id=' + idOrden + '')
+                    .then(function (response) {
+
+                        return response.json();
+                        for (var i = 0; i < response.length; i++) {
+                            console.log(response[i].nombre);
+                        }
+                    })
+                    .then(function (myJson) {
+                        $("#familiaDropDown").empty().append('<option value="1"> Seleciona Familia</option>');
+                        for (var i = 0; i < myJson.length; i++) {
+                            console.log(myJson[i].nombre);
+                            $('<option value="' + myJson[i].idFam + '">' + myJson[i].nombre + '</option>').appendTo("#familiaDropDown");
+                        }
+                        console.log(JSON.stringify(myJson));
+                    }).catch(function (error) {
+                        $("#familiaDropDown").empty().append('<option value="1"> No hay familias</option>');
+                        console.log("hubo un problema al obtener  la petición fetch:" + error.message);
+                    });
+
+
+            });
+
+            familiaSelect.addEventListener('change', function () {
+
+                indiceFam = $('select[id=familiaDropDown]').val();
+                indiceFam = parseInt(indiceFam);
+                console.log("indice familia") + indiceFam;
+
+                var selectedOption = document.getElementById("familiaDropDown");
+                var famy = document.getElementById("familia");
+                famy.value = selectedOption.options[selectedOption.selectedIndex].text;
+
+                fetch('http://tanathoz-001-site1.ctempurl.com/api/Especie?id=' + indiceFam + '')
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (myJson) {
+                        $("#especieDropDown").empty().append('<option value=""> Seleciona Especie</option>');
+                        for (var i = 0; i < myJson.length; i++) {
+                            console.log(myJson[i].nombre);
+                            $('<option value="' + myJson[i].nombre + '">' + myJson[i].nombre + '</option>').appendTo("#especieDropDown");
+                        }
+                        console.log(JSON.stringify(myJson));
+                    }).catch(function (error) {
+                        $("#especieDropDown").empty().append('<option value=""> No hay especies</option>');
+                        console.log("hubo un problema al obtener  la petición fetch:" + error.message);
+                    });
+
+            })
 
 
         });
-    </script>
+        </script>
 
-}
+    }

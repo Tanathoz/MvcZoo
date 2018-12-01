@@ -152,10 +152,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Animales\AnimalesAreaRegistration.cs" />
     <Compile Include="Areas\Animales\Controllers\AnimalController.cs" />
+    <Compile Include="Areas\Animales\Controllers\EjemplarController.cs" />
     <Compile Include="Areas\Animales\Controllers\EspecieController.cs" />
     <Compile Include="Areas\Animales\Controllers\FamiliaController.cs" />
     <Compile Include="Areas\Animales\Controllers\FilmController.cs" />
     <Compile Include="Areas\Animales\Models\Animal.cs" />
+    <Compile Include="Areas\Animales\Models\EjemplarViewModel.cs" />
     <Compile Include="Areas\Animales\Models\Especie.cs" />
     <Compile Include="Areas\Animales\Models\Familia.cs" />
     <Compile Include="Areas\Animales\Models\FilmViewModel.cs" />
@@ -170,6 +172,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -180,6 +184,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\AnimalScript.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -197,6 +203,9 @@
     <Content Include="Areas\Medicina\Views\Veterinario\Create.cshtml" />
     <Content Include="Areas\Medicina\Views\Veterinario\Edit.cshtml" />
     <Content Include="Areas\Animales\Views\Animal\Edit.cshtml" />
+    <Content Include="Areas\Animales\Views\Ejemplar\Index.cshtml" />
+    <Content Include="Areas\Animales\Views\Ejemplar\Create.cshtml" />
+    <Content Include="Areas\Animales\Views\Ejemplar\edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CargarOrdenes.js" />
     <Content Include="Scripts\EditarAnimal.js" />
@@ -210,6 +219,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\scriptApi.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -1,11 +1,11 @@
-﻿@model IEnumerable<CiZoochilpan.Areas.Animales.Models.Animal>
+﻿@model IEnumerable<CiZoochilpan.Areas.Animales.Models.EjemplarViewModel>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Gestión de Animales</h2>
+<h2>Gestión Ejemplares</h2>
 @if (TempData["Success"] != null)
 {
     <div class="alert alert-success alert-dismissible" role="alert">
@@ -22,18 +22,21 @@ else if (TempData["Error"] != null)
     </div>
 }
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 
 <div class="col-md-18">
     <div class="panel panel-default">
-        <div class="panel-heading"> <center><h3 class="opcion_iluminada"> Gestión de Animales </h3> </center> </div>
+        <div class="panel-heading"> <center><h3 class="opcion_iluminada"> Gestión de Ejemplares </h3> </center> </div>
         <div class="panel-body">
-            <a href="@Url.Action("Create", "Animal" )" class="btn btn-success btn-xl">
+            <a href="@Url.Action("Create", "Ejemplar" )" class="btn btn-success btn-xl">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             </a>
 
-            <form method="get" class="navbar-form navbar-right" role="search" asp-controller="Animal" asp-action="Index">
+            <form method="get" class="navbar-form navbar-right" role="search" asp-controller="Ejemplar" asp-action="Index">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="textoBuscar" placeholder="Buscar..." asp-for="textoBuscar" />
+                    <input type="text" class="form-control" name="textBuscar" placeholder="Buscar..." asp-for="textBuscar" />
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="submit">
                             <span class="glyphicon glyphicon-search"> </span>
@@ -43,32 +46,28 @@ else if (TempData["Error"] != null)
                     </span>
                 </div>
             </form>
+
+
             <table class="table">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.nombreCientifico)
+                        @Html.DisplayNameFor(model => model.marcaje)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.nombreComun)
                     </th>
-
                     <th>
-                        @Html.DisplayNameFor(model => model.clase)
+                        @Html.DisplayNameFor(model => model.fechaNacimiento)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.orden)
-                    </th>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.familia)
+                        @Html.DisplayNameFor(model => model.fechaAlta)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.especie)
+                        @Html.DisplayNameFor(model => model.sexo)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.habitat)
+                        @Html.DisplayNameFor(model => model.nombrePropio)
                     </th>
-
                     <th></th>
                 </tr>
 
@@ -76,32 +75,28 @@ else if (TempData["Error"] != null)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.nombreCientifico)
+                            @Html.DisplayFor(modelItem => item.marcaje)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.nombreComun)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.clase)
+                            @Html.DisplayFor(modelItem => item.fechaNacimiento)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.orden)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.familia)
+                            @Html.DisplayFor(modelItem => item.fechaAlta)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.especie)
+                            @Html.DisplayFor(modelItem => item.sexo)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.habitat)
+                            @Html.DisplayFor(modelItem => item.nombrePropio)
                         </td>
                         <td>
-                            <a href="@Url.Action("Edit", "Animal", new { id= item.id } )" class="btn btn-primary btn-xs">
+                            <a href="@Url.Action("Edit", "Ejemplar", new { marcaje= item.marcaje } )" class="btn btn-primary btn-xs">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             </a>
-                            <a href="@Url.Action("Delete", "Animal", new { id= item.id }  )" class="btn btn-danger btn-xs" onclick="return Confirmacion();">
+                            <a href="@Url.Action("Delete", "Ejemplar", new { marcajeDelete= item.marcaje } )" class="btn btn-danger btn-xs" onclick="return Confirmacion();">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true" ></span>
                             </a>
 
@@ -110,10 +105,10 @@ else if (TempData["Error"] != null)
                 }
 
             </table>
-
         </div>
     </div>
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -129,4 +124,3 @@ else if (TempData["Error"] != null)
         }
     </script>
 }
-

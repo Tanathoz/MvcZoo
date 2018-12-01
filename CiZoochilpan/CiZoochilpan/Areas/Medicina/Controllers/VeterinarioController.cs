@@ -112,7 +112,6 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
                     readTask.Wait();
                     veterinario = readTask.Result;
                 }
-
             }
 
             return View(veterinario);
