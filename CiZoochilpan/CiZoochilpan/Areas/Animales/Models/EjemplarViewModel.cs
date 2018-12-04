@@ -14,8 +14,10 @@ namespace CiZoochilpan.Areas.Animales.Models
         [Required(ErrorMessage = "Es obligatorio seleccionar animal")]
         public int idAnimal { get; set; }
         public string nombreComun { get; set; }
+        [DataType(DataType.Date)]
         public string fechaNacimiento { get; set; }
         [Required(ErrorMessage = "La fecha de alta es obligatoria ")]
+        [DataType(DataType.Date)]
         public string fechaAlta { get; set; }
         [Required(ErrorMessage = "El sexo es obligario")]
         public string sexo { get; set; }

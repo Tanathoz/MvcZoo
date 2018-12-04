@@ -1,0 +1,147 @@
+﻿@model CiZoochilpan.Areas.Animales.Models.EjemplarViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<SelectListItem> lstAnimales = new List<SelectListItem>();
+    lstAnimales.Add(new SelectListItem { Text = "--Seleccione animal--", Value = "", Selected = true });
+}
+
+<h2>Create</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-heading"><center><h3 class="opcion_iluminada">Registrar Ejemplar</h3></center></div>
+                <div class="panel-body">
+                    <a href="@Url.Action("Index", "Ejemplar" )" class="btn btn-primary btn-xs">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                    </a>
+                    <br />
+                    <br />
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.marcaje, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.marcaje, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.marcaje, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.nombreComun, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.idAnimal, lstAnimales, new { @class = "form-control", @id = "animalDropDown", @name = "animalDropDown" })
+                                @Html.ValidationMessageFor(model => model.idAnimal, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.nombreComun)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.fechaNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                             
+                                    @Html.EditorFor(model => model.fechaNacimiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                    @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
+                              
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.fechaAlta, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.fechaAlta, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.fechaAlta, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.sexo, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                Macho :  @Html.RadioButton("sexo", "M")
+                                Hembra  :  @Html.RadioButton("sexo", "F")
+                                @Html.ValidationMessageFor(model => model.sexo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.nombrePropio, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.nombrePropio, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.nombrePropio, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-success">
+                                        <span class="glyphicon glyphicon-plus">
+                                        </span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/datetime")
+     
+
+        <script>
+            $(document).ready(function () {
+               // $('#fechaNacimiento').datetimepicker({
+                  //  format: 'YYYY-MM-DD'
+                //});
+
+                $('#fechaAlta').datetimepicker({
+                    format: 'YYYY-MM-DD'
+                });
+                fetch('http://tanathoz-001-site1.ctempurl.com/api/Animal')
+                    .then(function (response) {
+
+                        return response.json();
+                        for (var i = 0; i < response.length; i++) {
+                            console.log(response[i].nombre);
+                        }
+                    })
+                    .then(function (myJson) {
+                        $("#animalDropDown").empty().append('<option value=""> Seleciona Animal</option>');
+                        for (var i = 0; i < myJson.length; i++) {
+                            console.log(myJson[i].nombreCientifico);
+                            $('<option value="' + myJson[i].id + '">' + myJson[i].nombreComun + '</option>').appendTo("#animalDropDown");
+                        }
+                        console.log(JSON.stringify(myJson));
+                    }).catch(function (error) {
+                        $("#animalDropDown").empty().append('<option value=""> No hay animales</option>');
+                        console.log("hubo un problema al obtener  la petición fetch:" + error.message);
+                    });
+
+
+            });
+
+
+
+        </script>
+
+    }

@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
     List<SelectListItem> lstAnimales = new List<SelectListItem>();
     lstAnimales.Add(new SelectListItem { Text = "--Seleccione animal--", Value = "", Selected = true });
 }
@@ -25,76 +24,73 @@
                     {
                         @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal">
-
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.marcaje, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.marcaje, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.marcaje, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                            
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.marcaje, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.marcaje, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.marcaje, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
 
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.nombreComun, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownListFor(model => model.idAnimal, lstAnimales, new { @class = "form-control", @id = "animalDropDown", @name = "animalDropDown" })
-                                @Html.ValidationMessageFor(model => model.idAnimal, "", new { @class = "text-danger" })
-                                @Html.HiddenFor(model => model.nombreComun)
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.idAnimal, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.idAnimal,lstAnimales, new { @class = "form-control", @id = "animalDropDown", @name = "animalDropDown" })
+                                    @Html.ValidationMessageFor(model => model.idAnimal, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.fechaNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                             
-                                    @Html.EditorFor(model => model.fechaNacimiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fechaNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.fechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
-                              
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.fechaAlta, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.fechaAlta, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                @Html.ValidationMessageFor(model => model.fechaAlta, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fechaAlta, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.fechaAlta, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.fechaAlta, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.sexo, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                Macho :  @Html.RadioButton("sexo", "M")
-                                Hembra  :  @Html.RadioButton("sexo", "F")
-                                @Html.ValidationMessageFor(model => model.sexo, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.sexo, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    Macho :  @Html.RadioButton("sexo", "M")
+                                    Hembra  :  @Html.RadioButton("sexo", "F")
+                                    @Html.ValidationMessageFor(model => model.sexo, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.nombrePropio, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.nombrePropio, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.nombrePropio, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-success">
-                                        <span class="glyphicon glyphicon-plus">
-                                        </span>
-                                    </button>
-                                </span>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nombrePropio, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.nombrePropio, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.nombrePropio, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-success">
+                                            <span class="glyphicon glyphicon-plus">
+                                            </span>
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     }
 
+                    
                 </div>
             </div>
         </div>
@@ -106,17 +102,17 @@
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/datetime")
-     
+
 
         <script>
             $(document).ready(function () {
-                $('#fechaNacimiento').datetimepicker({
-                    format: 'YYYY-MM-DD'
-                });
+               // $('#fechaNacimiento').datetimepicker({
+                  //  format: 'YYYY-MM-DD'
+                //});
 
-                $('#fechaAlta').datetimepicker({
-                    format: 'YYYY-MM-DD'
-                });
+              //  $('#fechaAlta').datetimepicker({
+                //    format: 'YYYY-MM-DD'
+                //});
                 fetch('http://tanathoz-001-site1.ctempurl.com/api/Animal')
                     .then(function (response) {
 

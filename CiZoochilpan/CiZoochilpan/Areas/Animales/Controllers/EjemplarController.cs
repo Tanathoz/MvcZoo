@@ -110,7 +110,7 @@ namespace CiZoochilpan.Areas.Animales.Controllers
         }
 
         [HttpPost]
-        public ActionResult edit(EjemplarViewModel ejemplar)
+        public ActionResult Edit(EjemplarViewModel ejemplar)
         {
             using (var client = new HttpClient())
             {
@@ -125,7 +125,7 @@ namespace CiZoochilpan.Areas.Animales.Controllers
                 }
             }
             TempData["Error"] = "Ha Ocurrido un error al intentar actualizar ";
-            return View(ejemplar);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete (string marcajeDelete)
