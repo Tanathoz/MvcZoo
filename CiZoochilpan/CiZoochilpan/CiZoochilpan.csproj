@@ -212,6 +212,9 @@
     <Content Include="Areas\Animales\Views\Ejemplar\Create.cshtml" />
     <Content Include="Areas\Animales\Views\Ejemplar\Edit.cshtml" />
     <Content Include="Areas\Dietas\Views\web.config" />
+    <Content Include="Areas\Dietas\Views\Dieta\Index.cshtml" />
+    <Content Include="Areas\Dietas\Views\Dieta\Create.cshtml" />
+    <Content Include="Areas\Dietas\Views\Dieta\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CargarOrdenes.js" />
     <Content Include="Scripts\EditarAnimal.js" />
@@ -249,7 +252,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Animales\Views\Shared\" />
     <Folder Include="Areas\Animales\Views\Veterinario\" />
-    <Folder Include="Areas\Dietas\Views\Dieta\" />
     <Folder Include="Areas\Dietas\Views\Shared\" />
     <Folder Include="Areas\Medicina\Views\Shared\" />
     <Folder Include="Models\" />
