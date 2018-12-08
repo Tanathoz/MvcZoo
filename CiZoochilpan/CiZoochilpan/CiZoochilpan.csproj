@@ -162,7 +162,9 @@
     <Compile Include="Areas\Animales\Models\Familia.cs" />
     <Compile Include="Areas\Animales\Models\FilmViewModel.cs" />
     <Compile Include="Areas\Dietas\Controllers\DietaController.cs" />
+    <Compile Include="Areas\Dietas\Controllers\DietaEjemplarController.cs" />
     <Compile Include="Areas\Dietas\DietasAreaRegistration.cs" />
+    <Compile Include="Areas\Dietas\Models\DietaEjemplarModelView.cs" />
     <Compile Include="Areas\Dietas\Models\DietaModelView.cs" />
     <Compile Include="Areas\Medicina\Controllers\VeterinarioController.cs" />
     <Compile Include="Areas\Medicina\Models\VeterinarioModel.cs" />
@@ -215,6 +217,8 @@
     <Content Include="Areas\Dietas\Views\Dieta\Index.cshtml" />
     <Content Include="Areas\Dietas\Views\Dieta\Create.cshtml" />
     <Content Include="Areas\Dietas\Views\Dieta\Edit.cshtml" />
+    <Content Include="Areas\Dietas\Views\DietaEjemplar\Index.cshtml" />
+    <Content Include="Areas\Dietas\Views\DietaEjemplar\Create.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CargarOrdenes.js" />
     <Content Include="Scripts\EditarAnimal.js" />
