@@ -1,23 +1,17 @@
 ﻿@model CiZoochilpan.Areas.Dietas.Models.DietaEjemplarModelView
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<SelectListItem> lstEjemplares = new List<SelectListItem>();
-    lstEjemplares.Add(new SelectListItem { Text = "--Seleccione Ejemplares--", Value = "", Selected = true });
+    lstEjemplares.Add(new SelectListItem { Text = "--Seleccione Ejemplar--", Value = "", Selected = true });
 }
-
-<div>
-    <br />
-    <br />
-
-</div>
 
 <div class="container">
     <div class="row">
         <div class="col-md-9">
             <div class="panel panel-default">
-                <div class="panel-heading"><center><h3 class="opcion_iluminada">Registrar Dieta Ejemplar</h3></center></div>
+                <div class="panel-heading"><center><h3 class="opcion_iluminada">Editar Dieta Ejemplar</h3></center></div>
                 <div class="panel-body">
                     <a href="@Url.Action("Index", "DietaEjemplar" )" class="btn btn-primary btn-xs">
                         <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
@@ -25,18 +19,18 @@
                     <br />
                     <br />
 
+
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
-                            <h4>DietaEjemplarModelView</h4>
-                            <hr />
+                          
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
                                 @Html.LabelFor(model => model.marcaje, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.DropDownListFor(model => model.marcaje, lstEjemplares, new { @class = "form-control", @id = "ejemplarDropDown", @name = "ejemplarDropDown" })
+                                    @Html.EditorFor(model => model.marcaje, new { htmlAttributes = new { @class = "form-control", @readonly= "readonly" } })
                                     @Html.ValidationMessageFor(model => model.marcaje, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -44,7 +38,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nombreComun, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.nombreComun, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.nombreComun, new { htmlAttributes = new { @class = "form-control", @readonly="readonly" } })
                                     @Html.ValidationMessageFor(model => model.nombreComun, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -52,7 +46,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nombrePropio, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.nombrePropio, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.nombrePropio, new { htmlAttributes = new { @class = "form-control" , @readonly="readonly"} })
                                     @Html.ValidationMessageFor(model => model.nombrePropio, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -68,7 +62,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.causaCambio, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.causaCambio, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.TextAreaFor(model => model.causaCambio, new { @class = "form-control", @rows="5" } )
                                     @Html.ValidationMessageFor(model => model.causaCambio, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -107,71 +101,31 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-success">
-                                            <span class="glyphicon glyphicon-save">
-                                            </span>
-                                        </button>
-                                    </span>
+                                    <input type="submit" value="Actualizar" class="btn btn-primary" />
                                 </div>
-                            </div>                            
+                            </div>
                         </div>
                     }
 
                 </div>
             </div>
         </div>
-
     </div>
 
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
+
         <script>
             $(document).ready(function () {
+                var modelo = @Html.Raw(Json.Encode(Model));
                 var ejemplarSelect = document.querySelector('#ejemplarDropDown');
-                var marcajeEjemplar;
+                var fechaCambio = modelo.fechaCambio;
+                var numEjem = 0;
 
-                fetch('http://tanathoz-001-site1.ctempurl.com/api/Ejemplar')
-                    .then(function (response) {
-                        return response.json();
-                        console.log("Lo bueno esta322");
-                        for (var i = 0; i < response.length; i++) {
-                            console.log(response[i].nombrePropio);
-                        }
-                    })
-                    .then(function (myJson) {
-                        $("#ejemplarDropDown").empty().append('<option value=""> Seleciona Ejemplar</option>');
-                        for (var i = 0; i < myJson.length; i++) {
-                            $('<option value="' + myJson[i].marcaje + '">' + myJson[i].nombrePropio + '</option>').appendTo("#ejemplarDropDown");
-                        }
+               // fechaNa = fechaNa.substring(0, 10);
+              //  console.log("fecha" + fechaNa);
+               // $('#fechaCambio').val('' + fechaNa);
 
-                    }).catch(function (error) {
-
-                        $("#ejemplarDropDown").empty().append('<option value=""> No hay animales</option>');
-                        console.log("hubo un problema al obtener  la petición fetch:" + error.message);
-                    });
-
-
-                ejemplarSelect.addEventListener('change', function () {
-                    marcajeEjemplar = $('select[id=ejemplarDropDown]').val();
-
-                    fetch('http://tanathoz-001-site1.ctempurl.com/api/Ejemplar?marcaje=' + marcajeEjemplar)
-                        .then(function (response) {
-                            return response.json();
-                        })
-                        .then(function (myJson) {
-
-                            $('#nombreComun').val(myJson.nombreComun);
-
-                        }).catch(function (error) {
-
-                            $("#ejemplarDropDown").empty().append('<option value=""> No hay animales</option>');
-                            console.log("hubo un problema al obtener  la petición fetch:" + error.message);
-                        });
-
-
-                })
             });
         </script>
-
     }

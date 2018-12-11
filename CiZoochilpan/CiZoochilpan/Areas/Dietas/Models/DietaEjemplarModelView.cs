@@ -11,6 +11,7 @@ namespace CiZoochilpan.Areas.Dietas.Models
         public string marcaje { get; set; }
         public string nombreComun { get; set; }
         public string nombrePropio { get; set; }
+        [DataType(DataType.Date)]
         public string fechaCambio { get; set; }
         [Required(ErrorMessage ="El campo de causa cambio es obligatorio")]
         [MinLength (5, ErrorMessage ="La longitud minima es de 5 caracteres")]

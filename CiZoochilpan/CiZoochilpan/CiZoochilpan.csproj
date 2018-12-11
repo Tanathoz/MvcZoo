@@ -219,6 +219,7 @@
     <Content Include="Areas\Dietas\Views\Dieta\Edit.cshtml" />
     <Content Include="Areas\Dietas\Views\DietaEjemplar\Index.cshtml" />
     <Content Include="Areas\Dietas\Views\DietaEjemplar\Create.cshtml" />
+    <Content Include="Areas\Dietas\Views\DietaEjemplar\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CargarOrdenes.js" />
     <Content Include="Scripts\EditarAnimal.js" />

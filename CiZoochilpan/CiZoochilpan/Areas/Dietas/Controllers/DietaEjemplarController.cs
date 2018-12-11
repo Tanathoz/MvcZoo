@@ -88,7 +88,7 @@ namespace CiZoochilpan.Areas.Dietas.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
-                var responseTask = client.GetAsync("DietaEjemplar?marcaje=" + marcaje.ToString());
+                var responseTask = client.GetAsync("DietaEjemplar?marcaje=" + marcaje);
                 responseTask.Wait();
                 var result = responseTask.Result;
                 if(result.IsSuccessStatusCode)
