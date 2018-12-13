@@ -136,6 +136,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
 
             TempData["Error"] = "Ha Ocurrido un error al intentar actualizar ";
             return View(veterinario);
+
         }
 
         public ActionResult Delete(int id)

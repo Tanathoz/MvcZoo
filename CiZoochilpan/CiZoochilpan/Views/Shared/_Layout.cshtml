@@ -44,7 +44,7 @@
                                          <ul class="dropdown-menu" role="menu">
                                              <li>@Html.ActionLink("Medicina Preventiva", "Index", "Profilaxis")</li>
                                              <li>@Html.ActionLink("Consulta Clinicas", "Index", "Consulta")</li>
-                                             <li>@Html.ActionLink("Farmacos", "Index", "Farmaco")</li>
+                                             <li>@Html.ActionLink("Farmacos", "Index", "Farmaco", new { Area= "Medicina"}, new {} )</li>
                                              <li>@Html.ActionLink("Veterinarios", "Index", "Veterinario", new {Area ="Medicina"}, new {})</li>
                                          </ul>
                     </li>
