@@ -167,8 +167,12 @@
     <Compile Include="Areas\Dietas\Models\DietaEjemplarModelView.cs" />
     <Compile Include="Areas\Dietas\Models\DietaModelView.cs" />
     <Compile Include="Areas\Medicina\Controllers\FarmacoController.cs" />
+    <Compile Include="Areas\Medicina\Controllers\FarmacoHojaController.cs" />
+    <Compile Include="Areas\Medicina\Controllers\HojaClinicaController.cs" />
     <Compile Include="Areas\Medicina\Controllers\VeterinarioController.cs" />
+    <Compile Include="Areas\Medicina\Models\FarmacoHojaModelView.cs" />
     <Compile Include="Areas\Medicina\Models\FarmacoModelView.cs" />
+    <Compile Include="Areas\Medicina\Models\HojaClinicaModelView.cs" />
     <Compile Include="Areas\Medicina\Models\VeterinarioModel.cs" />
     <Compile Include="Areas\Medicina\MedicinaAreaRegistration.cs" />
     <Compile Include="Areas\Medicina\Models\VeterinarioViewModel.cs" />
@@ -225,6 +229,8 @@
     <Content Include="Areas\Medicina\Views\Farmaco\Index.cshtml" />
     <Content Include="Areas\Medicina\Views\Farmaco\Create.cshtml" />
     <Content Include="Areas\Medicina\Views\Farmaco\Edit.cshtml" />
+    <Content Include="Areas\Medicina\Views\HojaClinica\Index.cshtml" />
+    <Content Include="Areas\Medicina\Views\HojaClinica\Create.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CargarOrdenes.js" />
     <Content Include="Scripts\EditarAnimal.js" />
@@ -263,6 +269,7 @@
     <Folder Include="Areas\Animales\Views\Shared\" />
     <Folder Include="Areas\Animales\Views\Veterinario\" />
     <Folder Include="Areas\Dietas\Views\Shared\" />
+    <Folder Include="Areas\Medicina\Views\FarmacoHoja\" />
     <Folder Include="Areas\Medicina\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
