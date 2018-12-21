@@ -172,6 +172,7 @@
     <Compile Include="Areas\Medicina\Controllers\VeterinarioController.cs" />
     <Compile Include="Areas\Medicina\Models\FarmacoHojaModelView.cs" />
     <Compile Include="Areas\Medicina\Models\FarmacoModelView.cs" />
+    <Compile Include="Areas\Medicina\Models\HojaAndFarmacoModels.cs" />
     <Compile Include="Areas\Medicina\Models\HojaClinicaModelView.cs" />
     <Compile Include="Areas\Medicina\Models\VeterinarioModel.cs" />
     <Compile Include="Areas\Medicina\MedicinaAreaRegistration.cs" />
@@ -231,6 +232,7 @@
     <Content Include="Areas\Medicina\Views\Farmaco\Edit.cshtml" />
     <Content Include="Areas\Medicina\Views\HojaClinica\Index.cshtml" />
     <Content Include="Areas\Medicina\Views\HojaClinica\Create.cshtml" />
+    <Content Include="Areas\Medicina\Views\HojaClinica\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CargarOrdenes.js" />
     <Content Include="Scripts\EditarAnimal.js" />

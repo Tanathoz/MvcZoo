@@ -90,5 +90,50 @@
                     return false;
                 }
             }
+            /*
+            $.ajax({
+                url: 'http://localhost:49770/api/Veterinario',
+                type: 'POST',
+                dataType: 'json',
+                data: { apellidoMaterno: 'Sevilla', apellidoPaterno: 'SFDK', id: 0, nombre: 'Zatu', sexo: 'M' },
+                success: function (response) {
+                    console.log(response);
+                }
+            }); */
+
+            $.ajax({
+                url: 'http://localhost:49770/api/HojaFarmaco',
+                type: 'POST',
+                dataType: 'json',
+                data: { dosis: '3 ml', fechaAplicacion: '2017-05-30', frecuencia: 'cada 3 hr', idClinica: 30, idFarmaco: 4 },
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+
+           /* const option = {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({ apellidoMaterno: 'Sevilla', apellidoPaterno: 'SFDK', id: 0, nombre: 'Zatu',  sexo: 'M' }),
+                credentials: 'include',
+                headers:new Headers({
+                    'Content-Type': 'application/json'
+                })
+
+            };
+            
+            fetch('http://localhost:49770/api/Veterinario', option)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((jsonObject) => {
+                    console.log(jsonObject)
+                    document.write(`ID ${jsonObject.id} was created!`);
+                })
+                .catch((error) => {
+                    document.write(error);
+                });
+                */    
+            
         </script>
     }

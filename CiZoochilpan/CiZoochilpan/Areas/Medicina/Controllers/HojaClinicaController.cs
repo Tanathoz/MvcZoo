@@ -64,12 +64,12 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(HojaClinicaModelView hoja)
+        public ActionResult Create(HojaAndFarmacoModels hoja)
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/HojaClinica");
-                var postTask = client.PostAsJsonAsync<HojaClinicaModelView>("HojaClinica",hoja);
+                var postTask = client.PostAsJsonAsync<HojaClinicaModelView>("HojaClinica",hoja.hojas);
                 postTask.Wait();
                 var resul = postTask.Result;
                 if (resul.IsSuccessStatusCode)
@@ -81,7 +81,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
 
             ModelState.AddModelError(string.Empty, "Server Error. contacta con el administrador");
             TempData["Error"] = "Ha Ocurrido un error al intentar guardar ";
-            return View(hoja);
+            return RedirectToAction("Index");
         }
 
 
