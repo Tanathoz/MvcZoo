@@ -88,20 +88,37 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
         public ActionResult Edit(int id)
         {
             HojaClinicaModelView hoja = null;
+            HojaAndFarmacoModels valor = new HojaAndFarmacoModels();
+            FarmacoHojaModelView farmaco = new FarmacoHojaModelView();
+
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
-                var responseTask = client.GetAsync("HojaClinica?idHoja=" + id);
+                var responseTask = client.GetAsync("HojaClinica?id=" + id);
                 responseTask.Wait();
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
                     var readTask = result.Content.ReadAsAsync<HojaClinicaModelView>();
                     readTask.Wait();
-                    hoja = readTask.Result;
+                    hoja  = readTask.Result;
+                    valor.hojas = new HojaClinicaModelView()
+                    {
+                        lugar = hoja.lugar.ToString(),
+                        fecha = hoja.fecha.ToString(),
+                        antecedentes = hoja.antecedentes.ToString(),
+                        diagnostico = hoja.diagnostico.ToString(),
+                        tratamiento = hoja.tratamiento.ToString(),
+                        observaciones = hoja.observaciones.ToString(),
+                        fechaAlta = hoja.fechaAlta.ToString(),
+                        marcaje = hoja.marcaje.ToString(),
+                        idVeterinario = Convert.ToInt32(hoja.idVeterinario)
+                    };
                 }
             }
-            return View(hoja);
+
+            
+            return View(valor);
         }
 
         [HttpPost]
