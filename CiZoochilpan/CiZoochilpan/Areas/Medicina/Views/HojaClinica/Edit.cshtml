@@ -58,7 +58,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.hojas.marcaje, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.hojas.marcaje, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.DropDownListFor(model => model.hojas.marcaje, lstEjemplares, new { @class = "form-control", @id = "ejemplarDropDown", @name = "ejemplarDropDown" })
                                 @Html.ValidationMessageFor(model => model.hojas.marcaje, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -93,14 +93,6 @@
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.hojas.tratamiento, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.hojas.tratamiento, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.hojas.fechaAplicacion, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.hojas.fechaAplicacion, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.hojas.fechaAplicacion, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -149,14 +141,14 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.hojas.idVeterinario, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.hojas.idVeterinario, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.DropDownListFor(model => model.hojas.idVeterinario, lstVeterinario, new { @class = "form-control", @id = "veterinarioDropDown", @name = "veterinarioDropDown" })
                                 @Html.ValidationMessageFor(model => model.hojas.idVeterinario, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Save" class="btn btn-default" />
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
                             </div>
                         </div>
                     </div>
@@ -240,6 +232,224 @@
 
         <script>
             $(document).ready(function () {
+                var selectorAnimal = document.querySelector('#ejemplarDropDown');
+                var selectorVeterinario = document.querySelector('#veterinarioDropDown');
+                var selectorFarmaco = document.querySelector('#farmacoDropDown')
+                var numEjemplares = 0, numVeterinarios= 0,count=0;
+                var modelo = @Html.Raw(Json.Encode(Model));
+              
+                fetch('http://tanathoz-001-site1.ctempurl.com/api/Ejemplar')
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (myJson) {
+                        //$("#ejemplarDropDown").empty().append('<option value=""> Seleciona Ejemplar</option>');
+                        for (var i = 0; i < myJson.length; i++) {
+                            numEjemplares = i;
+                            $('<option value="' + myJson[i].marcaje + '">' + myJson[i].nombrePropio + " - " + myJson[i].nombreComun + '</option>').appendTo("#ejemplarDropDown");
+                        }
+
+                        if (numEjemplares < 1) {
+                            selectorAnimal.selectedIndex = 1;
+                        } else {
+                            for (var j = 0; j <= numEjemplares + 1; j++) {
+                                
+                                if ((selectorAnimal.options[j].value).localeCompare(modelo.hojas.marcaje) == 0) {
+                                    selectorAnimal.selectedIndex = j;
+                                    break;
+                                }
+                            }
+                        }
+
+
+                    }).catch(function (error) {
+
+                        $("#ejemplarDropDown").empty().append('<option value=""> No hay ejemplares</option>');
+                        console.log("hubo un problema al obtener  la petición fetch:" + error.message);
+                    });
+
+                fetch('http://tanathoz-001-site1.ctempurl.com/api/Farmaco')
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (myJson) {
+                        $("#farmacoDropDown").empty().append('<option value=""> Selecciona farmaco </option> ');
+                        for (var i = 0; i < myJson.length; i++) {
+                            $('<option value="' + myJson[i].id + '">' + myJson[i].nombre + '</option>').appendTo("#farmacoDropDown");
+
+                        }
+                    }).catch(function (error) {
+                        $("#farmacoDropDown").empty().append('<option value=""> No hay ejemplares </option>');
+                        console.log("hubo un problema al obtener la petición fetch: " + error.message);
+                    })
+
+
+                fetch('http://tanathoz-001-site1.ctempurl.com/api/Veterinario')
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (myJson) {
+                        $("#veterinarioDropDown").empty().append('<option value=""> Seleciona Veterinario</option>');
+                        for (var i = 0; i < myJson.length; i++) {
+                            numVeterinarios = i;
+                            $('<option value="' + myJson[i].id + '">' + myJson[i].nombre + " - " + myJson[i].apellidoPaterno + '</option>').appendTo("#veterinarioDropDown");
+                        }
+                        if (numVeterinarios < 1) {
+                            selectorVeterinario.selectedIndex = 1;
+                        } else {
+                            for (var j = 0; j <= numVeterinarios + 1; j++) {
+                                console.log("Lo que sea df" + modelo.hojas.idVeterinario + "el sele" + selectorVeterinario.options[j].value);
+                                if ((selectorVeterinario.options[j].value).localeCompare(modelo.hojas.idVeterinario) == 0) {
+                                     selectorVeterinario.selectedIndex = j;
+                                     break;
+                                }
+                            }
+                        }
+                    }).catch(function (error) {
+
+                        $("#veterinarioDropDown").empty().append('<option value=""> No hay veterinario</option>');
+                        console.log("hubo un problema al obtener  la petición fetch:" + error.message);
+                    });
+
+                fetch('http://tanathoz-001-site1.ctempurl.com/api/HojaFarmaco?idHoja=' + modelo.hojas.id +'')
+                    .then(function (response) {
+                        return response.json();
+                        //Continuar con el servicio de cargarNumClinica en el archivo formActualiza
+                        // checar las consultas en el controlador 
+                        
+
+                    })
+                    .then(function (myJson) {
+                        for (var i = 0; i < myJson.length; i++) {
+                            $('#tablaFarmaco tr:last').before('<tr ><td class="idFarm"> ' + myJson[i].idFarmaco + '</td><td name="nombreFarm[]">' + myJson[i].nombreFarmaco + '</td><td name="viaFarm[]">' + myJson[i].via + '</td><td name="dosisFarm[]">' + myJson[i].dosis + '</td><td name="freFarm[]">' + myJson[i].frecuencia + '</td><td name="fechaFarm[]">' + myJson[i].fechaAplicacion + '</td><td><button class="btn btn-primary btn-xs editar" id="editar" name="editar"> <span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-danger btn-xs borrar"  id="borrar" name="borrar"> <span class="glyphicon glyphicon-trash"></span></button></td></tr>')
+                            console.log("numero de medida" + i);
+                        }
+                           
+                    }).catch(function (error) {
+                        $("#farmacos_idClinica").val('Error al obtener maximo id');
+                        ;
+                        console.log("hubo un problema al obtener  la petición fetch:" + error.message);
+                    });
+
+                selectorFarmaco.addEventListener('change', function () {
+                    idFarmaco = $('select[id=farmacoDropDown]').val();
+                    fetch('http://tanathoz-001-site1.ctempurl.com/api/Farmaco?id=' + idFarmaco)
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (myJson) {
+                            $("#via").val('' + myJson.via);
+
+                        }).catch(function (error) {
+
+                            $("#via").val('error');
+                            console.log("hubo un problema al obtener  la petición fetch:" + error.message);
+                        });
+
+                });
+
+                $("#addFarmaco").click(function (event) {
+                    var nombreFar = $('select[id="farmacoDropDown"] option:selected').text();
+                    count++;
+                    var dosisFar = $('input[id=farmacos_dosis]').val();
+                    var viaFar = $('input[name=via]').val();
+                    var frecuenciaFar = $('input[id=farmacos_frecuencia]').val();
+                    var fechaFar = $('input[id=farmacos_fechaAplicacion]').val();
+                    var idFar = $(selectorFarmaco).val();
+                    var idClinica = modelo.hojas.id;
+                    idClinica = parseInt(idClinica);
+                    $('#tablaFarmaco tr:last').before('<tr ><td class="idFarm"> ' + idFar + '</td><td name="nombreFarm[]">' + nombreFar + '</td><td name="viaFarm[]">' + viaFar + '</td><td name="dosisFarm[]">' + dosisFar + '</td><td name="freFarm[]">' + frecuenciaFar + '</td><td name="fechaFarm[]">' + fechaFar + '</td><td><button class="btn btn-primary btn-xs editar" id="editar" name="editar"> <span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-danger btn-xs borrar"  id="borrar" name="borrar"> <span class="glyphicon glyphicon-trash"></span></button></td></tr>');
+                    $("#via").val('');
+                    $("#farmacos_nombreFarmaco").val('');
+                    $("#farmacos_dosis").val('');
+                    $("#farmacos_frecuencia").val('');
+                    $("#farmacos_fechaAplicacion").val('');
+                    event.preventDefault();
+                    console.log("" + idClinica + "" + idFar + ""+ dosisFar + "" + frecuenciaFar + "" + fechaFar);
+                    $.ajax({
+                        url: 'http://tanathoz-001-site1.ctempurl.com/api/HojaFarmaco',
+                        type: "Put",
+                        dataType: 'json',
+                        data: { idClinica: idClinica, idFarmaco: idFar, dosis: dosisFar, frecuencia: frecuenciaFar, fechaAplicacion: fechaFar },
+                        success: function (response) {
+                            console.log("exitos prros");
+                        }
+                    });
+                    
+                });
+
+                $(function () {
+                    $(document).on('click', '.editar', function (event) {
+                        event.preventDefault();
+                        var valFarmaco, filaTabla;
+                        filaTabla = $(this).parents("tr");
+                        $(this).parents("tr").find("td").each(function () {
+                            valFarmaco += $(this).html() + ",";
+                            event.preventDefault();
+                            $(this).closest('tr').remove();
+                        });
+
+                        var arregloDatos = valFarmaco.split(',');
+                        var idfarmacoEdit = arregloDatos[0].substring(10, 11);
+                        idfarmacoEdit = idfarmacoEdit.toString();
+                        var i = "   1    ";
+                        idfarmacoEdit = idfarmacoEdit.trim();
+                        $('#farmacoDropDown > option[value="' + idfarmacoEdit + '"]').attr('selected', 'selected');
+                        $("#via").val(arregloDatos[2]);
+                        $("#farmacos_dosis").val(arregloDatos[3]);
+                        $("#farmacos_frecuencia").val(arregloDatos[4]);
+                        $("#farmacos_fechaAplicacion").val(arregloDatos[5]);
+                        $('#ventanaFarmaco').modal("show");
+                    });
+                });
+
+                $('form').submit(function () {
+                    if ($(this).valid()) {
+                        var idClinica = modelo.hojas.id;
+                        idClinica = parseInt(idClinica);
+                        
+                        var valores = "";
+                        var contador = 0;
+                        var columnas = 6;
+                        $(".idFarm").parent("tr").find("td").each(function () {
+                            valores += $(this).html();
+                            if (contador == columnas) {
+                                valores += ";";
+                                columnas += 7;
+                            } else {
+                                valores += ",";
+                            }
+
+                            contador++;
+                        });
+
+                        var arregloDeCadenas = valores.split(';');
+                        var nuevaCadena = valores.replace(/;/g, ',');
+                        var arregloDatos = nuevaCadena.split(',');
+                        var paso = 0;
+
+
+                        for (i = 0; i < arregloDeCadenas.length - 1; i++) {
+                            alert("a la cara");
+
+                            putRequest('http://localhost:49770/api/HojaFarmaco?', { idClinica: idClinica, idFarmaco: arregloDatos[paso], dosis: arregloDatos[paso + 3], frecuencia: arregloDatos[paso + 4], fechaAplicacion: arregloDatos[paso + 5] })
+                                .then(data => console.log(data))
+                                .catch(error => console.error(error))
+                            function putRequest(url, data) {
+                                return fetch(url, {
+                                    credentials: 'same-origin',
+                                    method: 'POST',
+                                    body: JSON.stringify(data),
+                                    headers: new Headers({
+                                        'Content-Type': 'application/json'
+                                    }),
+                                })
+                                    .then(response => response.json())
+                            }
+                            paso += 7;
+                        }
+                    }
+                });
 
             })
         </script>

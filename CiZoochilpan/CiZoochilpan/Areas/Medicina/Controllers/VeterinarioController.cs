@@ -58,10 +58,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
                         ModelState.AddModelError(string.Empty, "Error al obtener los datos de los veterinarios");
                         Console.WriteLine("Error al obtener los datos");
                     }
-                }
-
-              
-                
+                }          
              }
 
              return View(lstVeterinario); 

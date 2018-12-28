@@ -104,6 +104,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
                     hoja  = readTask.Result;
                     valor.hojas = new HojaClinicaModelView()
                     {
+                        id = id,
                         lugar = hoja.lugar.ToString(),
                         fecha = hoja.fecha.ToString(),
                         antecedentes = hoja.antecedentes.ToString(),
@@ -122,12 +123,13 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(HojaClinicaModelView hoja)
+        public ActionResult Edit(HojaAndFarmacoModels hoja)
         {
+           
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/HojaClinica");
-                var putTask = client.PutAsJsonAsync<HojaClinicaModelView>("HojaClinica",hoja);
+                var putTask = client.PutAsJsonAsync<HojaClinicaModelView>("HojaClinica",hoja.hojas);
                 putTask.Wait();
                 var result = putTask.Result;
                 if (result.IsSuccessStatusCode)
