@@ -20,7 +20,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
 
                 if (textoBuscar == string.Empty || textoBuscar == null)
                 {
-                    client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                    client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                     //HTTP GET
                     var responseTask = client.GetAsync("Veterinario");
                      responseTask.Wait();
@@ -41,7 +41,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
                 }
                 else
                 {
-                    client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                    client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                     var responseTask = client.GetAsync("Veterinario?valor=" + textoBuscar);
                     responseTask.Wait();
                     var result = responseTask.Result;
@@ -74,7 +74,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/Veterinario");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/Veterinario");
                 //HTTP POST
                 var postTask = client.PostAsJsonAsync<VeterinarioViewModel>("Veterinario", veterinario);
                 postTask.Wait();
@@ -97,7 +97,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
             VeterinarioViewModel veterinario = null;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                 //HTTP Get
                 var responseTask = client.GetAsync("Veterinario?id=" + id);
                 responseTask.Wait();
@@ -119,7 +119,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/Veterinario");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/Veterinario");
                 //HTTP POST
                 var putTask = client.PutAsJsonAsync<VeterinarioViewModel>("Veterinario", veterinario);
                 putTask.Wait();
@@ -140,7 +140,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                 //HTTP DELETE
                 var deleteTask = client.DeleteAsync("Veterinario/" + id.ToString());
                 deleteTask.Wait();

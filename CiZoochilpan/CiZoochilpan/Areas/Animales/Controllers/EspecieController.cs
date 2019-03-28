@@ -24,7 +24,7 @@ namespace CiZoochilpan.Areas.Animales.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/Especie");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/Especie");
                 var postTask = client.PostAsJsonAsync<Especie>("Especie", especie);
                 postTask.Wait();
                 var result = postTask.Result;

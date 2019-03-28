@@ -46,11 +46,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -58,6 +63,14 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -101,9 +114,6 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -150,6 +160,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Animales\AnimalesAreaRegistration.cs" />
     <Compile Include="Areas\Animales\Controllers\AnimalController.cs" />
     <Compile Include="Areas\Animales\Controllers\EjemplarController.cs" />
@@ -169,11 +180,19 @@
     <Compile Include="Areas\Medicina\Controllers\FarmacoController.cs" />
     <Compile Include="Areas\Medicina\Controllers\FarmacoHojaController.cs" />
     <Compile Include="Areas\Medicina\Controllers\HojaClinicaController.cs" />
+    <Compile Include="Areas\Medicina\Controllers\HojaProfilaxisController.cs" />
+    <Compile Include="Areas\Medicina\Controllers\NecropsiaController.cs" />
+    <Compile Include="Areas\Medicina\Controllers\UserController.cs" />
     <Compile Include="Areas\Medicina\Controllers\VeterinarioController.cs" />
     <Compile Include="Areas\Medicina\Models\FarmacoHojaModelView.cs" />
     <Compile Include="Areas\Medicina\Models\FarmacoModelView.cs" />
+    <Compile Include="Areas\Medicina\Models\FarmacoProfilaxisModelView.cs" />
     <Compile Include="Areas\Medicina\Models\HojaAndFarmacoModels.cs" />
     <Compile Include="Areas\Medicina\Models\HojaClinicaModelView.cs" />
+    <Compile Include="Areas\Medicina\Models\HojaProfilaxisModelView.cs" />
+    <Compile Include="Areas\Medicina\Models\NecropsiaModelView.cs" />
+    <Compile Include="Areas\Medicina\Models\ProfilaxisAndFarmaco.cs" />
+    <Compile Include="Areas\Medicina\Models\UserModelView.cs" />
     <Compile Include="Areas\Medicina\Models\VeterinarioModel.cs" />
     <Compile Include="Areas\Medicina\MedicinaAreaRegistration.cs" />
     <Compile Include="Areas\Medicina\Models\VeterinarioViewModel.cs" />
@@ -233,6 +252,12 @@
     <Content Include="Areas\Medicina\Views\HojaClinica\Index.cshtml" />
     <Content Include="Areas\Medicina\Views\HojaClinica\Create.cshtml" />
     <Content Include="Areas\Medicina\Views\HojaClinica\Edit.cshtml" />
+    <Content Include="Areas\Medicina\Views\HojaProfilaxis\Index.cshtml" />
+    <Content Include="Areas\Medicina\Views\HojaProfilaxis\Create.cshtml" />
+    <Content Include="Areas\Medicina\Views\HojaProfilaxis\Edit.cshtml" />
+    <Content Include="Areas\Medicina\Views\Necropsia\Index.cshtml" />
+    <Content Include="Areas\Medicina\Views\Necropsia\Create.cshtml" />
+    <Content Include="Areas\Medicina\Views\Necropsia\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CargarOrdenes.js" />
     <Content Include="Scripts\EditarAnimal.js" />
@@ -273,6 +298,7 @@
     <Folder Include="Areas\Dietas\Views\Shared\" />
     <Folder Include="Areas\Medicina\Views\FarmacoHoja\" />
     <Folder Include="Areas\Medicina\Views\Shared\" />
+    <Folder Include="Areas\Medicina\Views\User\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

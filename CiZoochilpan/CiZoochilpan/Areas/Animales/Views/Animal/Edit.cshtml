@@ -252,7 +252,7 @@
             var OptionOrden = document.getElementById("ordenDropDown");
             var ord = document.getElementById("orden");
             ord.value = OptionOrden.options[OptionOrden.selectedIndex].text;
-            fetch('http://tanathoz-001-site1.ctempurl.com/api/Familia?id=' + idOrden + '')
+            fetch('https://zoochilpan.azurewebsites.net/api/Familia?id=' + idOrden + '')
                 .then(function (response) {
 
                     return response.json();
@@ -280,7 +280,7 @@
                     var selectedOption = document.getElementById("familiaDropDown");
                     var famy = document.getElementById("familia");
                     famy.value = selectedOption.options[selectedOption.selectedIndex].text;
-                    fetch('http://tanathoz-001-site1.ctempurl.com/api/Especie?id=' + indiceFam + '')
+                    fetch('https://zoochilpan.azurewebsites.net/api/Especie?id=' + indiceFam + '')
                         .then(function (response) {
                             return response.json();
                         })
@@ -365,7 +365,7 @@
                 var ord = document.getElementById("orden");
                 ord.value = OptionOrden.options[OptionOrden.selectedIndex].text;
 
-                fetch('http://tanathoz-001-site1.ctempurl.com/api/Familia?id=' + idOrden + '')
+                fetch('https://zoochilpan.azurewebsites.net/api/Familia?id=' + idOrden + '')
                     .then(function (response) {
 
                         return response.json();
@@ -398,7 +398,7 @@
                 var famy = document.getElementById("familia");
                 famy.value = selectedOption.options[selectedOption.selectedIndex].text;
 
-                fetch('http://tanathoz-001-site1.ctempurl.com/api/Especie?id=' + indiceFam + '')
+                fetch('https://zoochilpan.azurewebsites.net/api/Especie?id=' + indiceFam + '')
                     .then(function (response) {
                         return response.json();
                     })

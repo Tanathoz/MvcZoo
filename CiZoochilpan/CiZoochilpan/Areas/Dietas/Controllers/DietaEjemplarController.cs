@@ -19,7 +19,7 @@ namespace CiZoochilpan.Areas.Dietas.Controllers
             {
                 if (textoBuscar ==null || textoBuscar == string.Empty)
                 {
-                    client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                    client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                     var responseTask = client.GetAsync("DietaEjemplar");
                     responseTask.Wait();
                     var result = responseTask.Result;
@@ -36,7 +36,7 @@ namespace CiZoochilpan.Areas.Dietas.Controllers
                     }
                 }else
                 {
-                    client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                    client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                     var responseTask = client.GetAsync("DietaEjemplar?valor=" + textoBuscar);
                     responseTask.Wait();
                     var result = responseTask.Result;
@@ -65,7 +65,7 @@ namespace CiZoochilpan.Areas.Dietas.Controllers
         public ActionResult Create(DietaEjemplarModelView dieta)
         {
             using (var client  = new HttpClient()){
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/DietaEjemplar");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/DietaEjemplar");
                 var postTask = client.PostAsJsonAsync<DietaEjemplarModelView>("DietaEjemplar",dieta);
                 postTask.Wait();
                 var result = postTask.Result;
@@ -87,7 +87,7 @@ namespace CiZoochilpan.Areas.Dietas.Controllers
             DietaEjemplarModelView dieta = null;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                 var responseTask = client.GetAsync("DietaEjemplar?marcaje=" + marcaje);
                 responseTask.Wait();
                 var result = responseTask.Result;
@@ -107,7 +107,7 @@ namespace CiZoochilpan.Areas.Dietas.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/DietaEjemplar");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/DietaEjemplar");
                 var putTask = client.PutAsJsonAsync<DietaEjemplarModelView>("DietaEjemplar", dieta);
                 putTask.Wait();
                 var result = putTask.Result;
@@ -126,7 +126,7 @@ namespace CiZoochilpan.Areas.Dietas.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                 var deleteTask = client.DeleteAsync("DietaEjemplar/?marcaje="+marcaje);
                 deleteTask.Wait();
                 var result = deleteTask.Result;

@@ -19,7 +19,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
             {
                 if (textoBuscar == string.Empty || textoBuscar == null)
                 {
-                    client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                    client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                     var responseTask = client.GetAsync("HojaClinica");
                     responseTask.Wait();
                     var result = responseTask.Result;
@@ -37,7 +37,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
                     }
                 }else
                 {
-                    client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                    client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                     var responseTask = client.GetAsync("HojaClinica?valor="+textoBuscar);
                     responseTask.Wait();
                     var result = responseTask.Result;
@@ -68,7 +68,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/HojaClinica");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/HojaClinica");
                 var postTask = client.PostAsJsonAsync<HojaClinicaModelView>("HojaClinica",hoja.hojas);
                 postTask.Wait();
                 var resul = postTask.Result;
@@ -93,7 +93,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                 var responseTask = client.GetAsync("HojaClinica?id=" + id);
                 responseTask.Wait();
                 var result = responseTask.Result;
@@ -128,7 +128,7 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
            
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/HojaClinica");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/HojaClinica");
                 var putTask = client.PutAsJsonAsync<HojaClinicaModelView>("HojaClinica",hoja.hojas);
                 putTask.Wait();
                 var result = putTask.Result;
@@ -143,11 +143,38 @@ namespace CiZoochilpan.Areas.Medicina.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [HttpPost]
+        public ActionResult EditarFarmaco(string idClinica, string idFarmaco, string dosis, string frecuencia, string fechaAplicacion) {
+            FarmacoHojaModelView farmaco = new FarmacoHojaModelView()
+            {
+                idClinica = Convert.ToInt32(idClinica),
+                idFarmaco = Convert.ToInt32(idFarmaco),
+                dosis = dosis,
+                frecuencia = frecuencia,
+                fechaAplicacion = fechaAplicacion
+            };
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/HojaFarmaco");
+                var putTask = client.PutAsJsonAsync<FarmacoHojaModelView>("HojaFarmaco", farmaco);
+                putTask.Wait();
+                var result = putTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+
+                    TempData["Success"] = "Se ha editado una hoja de forma exitosa";
+                    return View();
+                }
+            }
+            TempData["Error"] = "Ha Ocurrido un error al intentar actualizar ";
+            return View();
+        }
         public ActionResult Delete(int id)
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                 var deleteTask = client.DeleteAsync("HojaClinica/"+id.ToString());
                 deleteTask.Wait();
                 var result = deleteTask.Result;

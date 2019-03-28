@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CiZoochilpan.Areas.Medicina.Models
 {
-    public class HojaClinicaModelView
+    public class NecropsiaModelView
     {
         public int id { get; set; }
         [Required(ErrorMessage = "El campo lugar es obligatorio")]
@@ -16,17 +16,6 @@ namespace CiZoochilpan.Areas.Medicina.Models
         [Required(ErrorMessage = "El campo fecha es obligatorio")]
         [DataType(DataType.Date)]
         public string fecha { get; set; }
-
-        public string antecedentes { get; set; }
-        [Required(ErrorMessage = "El campo diagnostico es obligatorio")]
-        public string diagnostico { get; set; }
-        [Required(ErrorMessage = "El campo tratamiento es obligatorio")]
-        public string tratamiento { get; set; }
-        [DataType(DataType.Date)]
-        public string fechaAplicacion { get; set; }
-        public string observaciones { get; set; }
-        [DataType(DataType.Date)]
-        public string fechaAlta { get; set; }
         [Required(ErrorMessage = "El campo marcaje es obligatorio")]
         public string marcaje { get; set; }
         public string nombrePropio { get; set; }
@@ -34,7 +23,18 @@ namespace CiZoochilpan.Areas.Medicina.Models
         [Required(ErrorMessage = "El campo id veterinario es obligatorio")]
         public int idVeterinario { get; set; }
 
-
+        [Required(ErrorMessage = "El campo id encargado es obligatorio")]
+        public int idEncargado { get; set; }
+        [DataType(DataType.Time)]
+        public string hora { get; set; }
+        public string antecedentes { get; set; }
+        [Required(ErrorMessage = "El campo diagnostico es obligatorio")]
+        public string diagnosticoMuerte { get; set; }
+        public string estadoFisico { get; set; }
+        public string lesiones { get; set; }
+        public string toracica { get; set; }
+        public string abdominal { get; set; }
+        public string muestras { get; set; }
 
     }
 }

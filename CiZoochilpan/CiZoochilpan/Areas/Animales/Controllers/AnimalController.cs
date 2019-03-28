@@ -19,7 +19,7 @@ namespace CiZoochilpan.Areas.Animales.Controllers
             {
                 if (textoBuscar == string.Empty || textoBuscar == null)
                 {
-                    client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                    client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                     //HTTP GET
                     var responseTask = client.GetAsync("Animal");
                     responseTask.Wait();
@@ -38,7 +38,7 @@ namespace CiZoochilpan.Areas.Animales.Controllers
                 }
                 else
                 {
-                    client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                    client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                     var responseTask = client.GetAsync("Animal?valor=" + textoBuscar);
                     responseTask.Wait();
                     var result = responseTask.Result;
@@ -73,7 +73,7 @@ namespace CiZoochilpan.Areas.Animales.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/Animal");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/Animal");
                 //HTTP post
                 var postTakes = client.PostAsJsonAsync<Animal>("Animal", animal);
                 postTakes.Wait();
@@ -95,7 +95,7 @@ namespace CiZoochilpan.Areas.Animales.Controllers
             Animal animal = null;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                 var responseTask = client.GetAsync("Animal?id=" + id);
                 responseTask.Wait();
                 var result = responseTask.Result;
@@ -114,7 +114,7 @@ namespace CiZoochilpan.Areas.Animales.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/Animal");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/Animal");
                 var putTask = client.PutAsJsonAsync<Animal>("Animal", animal);
                 putTask.Wait();
                 var result = putTask.Result;
@@ -132,7 +132,7 @@ namespace CiZoochilpan.Areas.Animales.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://tanathoz-001-site1.ctempurl.com/api/");
+                client.BaseAddress = new Uri("http://tanathos-001-site1.dtempurl.com/api/");
                 var deleteTask = client.DeleteAsync("Animal/?id=" + id.ToString());
                 deleteTask.Wait();
                 var result = deleteTask.Result;

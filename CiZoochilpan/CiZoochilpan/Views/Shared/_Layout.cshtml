@@ -42,7 +42,7 @@
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">&nbsp;&nbsp;&nbsp;&nbsp; Seguimiento De Salud<span class="caret"></span> </a>
                                          <ul class="dropdown-menu" role="menu">
-                                             <li>@Html.ActionLink("Medicina Preventiva", "Index", "Profilaxis")</li>
+                                             <li>@Html.ActionLink("Medicina Preventiva", "Index", "HojaProfilaxis" , new { Area= "Medicina"}, new{} )</li>
                                              <li>@Html.ActionLink("Consulta Clinicas", "Index", "HojaClinica", new {Area = "Medicina"}, new {})</li>
                                              <li>@Html.ActionLink("Farmacos", "Index", "Farmaco", new { Area= "Medicina"}, new {} )</li>
                                              <li>@Html.ActionLink("Veterinarios", "Index", "Veterinario", new {Area ="Medicina"}, new {})</li>
@@ -50,7 +50,7 @@
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">&nbsp;&nbsp;&nbsp;&nbsp; Mortalidad<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Necropsias","Index", "Necropsia")</li>
+                            <li>@Html.ActionLink("Necropsias", "Index", "Necropsia", new { Area = "Medicina" }, new { })</li>
                             <li>@Html.ActionLink("Siniestros","Index","Siniestro")</li>
                         </ul>
                     </li>

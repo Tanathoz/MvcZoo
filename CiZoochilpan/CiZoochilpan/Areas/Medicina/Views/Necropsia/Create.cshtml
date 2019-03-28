@@ -1,0 +1,226 @@
+﻿@model CiZoochilpan.Areas.Medicina.Models.NecropsiaModelView
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<SelectListItem> lstEjemplares = new List<SelectListItem>();
+    lstEjemplares.Add(new SelectListItem { Text = "--Seleccione Ejemplar--", Value = "", Selected = true });
+
+    List<SelectListItem> lstVeterinario = new List<SelectListItem>();
+    lstVeterinario.Add(new SelectListItem { Text = "--Seleccione Veterinario--", Value = "", Selected = true });
+
+
+}
+
+<br />
+<br />
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-heading"><center><h3 class="opcion_iluminada">Registrar  Necropsia</h3></center></div>
+                <div class="panel-body">
+                    <a href="@Url.Action("Index", "Necropsia" )" class="btn btn-primary btn-xs">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                    </a>
+                    <br />
+                    <br />
+
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lugar, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.lugar, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.lugar, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("Elige ejemplar", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.marcaje, lstEjemplares, new { @class = "form-control", @id = "ejemplarDropDown", @name = "ejemplarDropDown" })
+                                    @Html.ValidationMessageFor(model => model.marcaje, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.hora, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.hora, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.hora, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.antecedentes, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.antecedentes, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.antecedentes, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.diagnosticoMuerte, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.diagnosticoMuerte, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.diagnosticoMuerte, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.estadoFisico, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.estadoFisico, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.estadoFisico, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lesiones, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.lesiones, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.lesiones, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.toracica, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.toracica, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.toracica, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.abdominal, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.abdominal, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.abdominal, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.muestras, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.muestras, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.muestras, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                       
+                                @Html.LabelFor(model => model.idVeterinario, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+
+                                    @Html.DropDownListFor(model => model.idVeterinario, lstVeterinario, new { @class = "form-control", @id = "veterinarioDropDown", @name = "veterinarioDropDown" })
+                                    @Html.ValidationMessageFor(model => model.idVeterinario, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.idEncargado, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+
+                                    @Html.DropDownListFor(model => model.idEncargado, lstVeterinario, new { @class = "form-control", @id = "encargadoDropDown", @name = "encargadoDropDown" })
+                                    @Html.ValidationMessageFor(model => model.idEncargado, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" id="btnGuardar" name="btnGuardar" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+
+                   
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        $(document).ready(function () {
+            var idAnimal;
+            var selectorAnimal = document.querySelector('#ejemplarDropDown');
+            var count = 0;
+
+            fetch('http://tanathos-001-site1.dtempurl.com/api/Ejemplar')
+                   .then(function (response) {
+                       return response.json();
+                   })
+                   .then(function (myJson) {
+                       $("#ejemplarDropDown").empty().append('<option value=""> Seleciona Ejemplar</option>');
+                       for (var i = 0; i < myJson.length; i++) {
+                           $('<option value="' + myJson[i].marcaje + '">' + myJson[i].nombrePropio + " - " + myJson[i].nombreComun + '</option>').appendTo("#ejemplarDropDown");
+                       }
+                   }).catch(function (error) {
+
+                       $("#ejemplarDropDown").empty().append('<option value=""> No hay ejemplares</option>');
+                       console.log("hubo un problema al obtener  la petición fetch:" + error.message);
+                   });
+
+            fetch('http://tanathos-001-site1.dtempurl.com/api/Veterinario')
+                   .then(function (response) {
+                       return response.json();
+                   })
+                   .then(function (myJson) {
+                       $("#veterinarioDropDown").empty().append('<option value=""> Seleciona Veterinario</option>');
+                       $("#encargadoDropDown").empty().append('<option value=""> Seleciona Veterinario</option>');
+                       for (var i = 0; i < myJson.length; i++) {
+                           $('<option value="' + myJson[i].id + '">' + myJson[i].nombre + " - " + myJson[i].apellidoPaterno + '</option>').appendTo("#veterinarioDropDown");
+                           $('<option value="' + myJson[i].id + '">' + myJson[i].nombre + " - " + myJson[i].apellidoPaterno + '</option>').appendTo("#encargadoDropDown");
+                       }
+                   }).catch(function (error) {
+
+                       $("#veterinarioDropDown").empty().append('<option value=""> No hay veterinario</option>');
+                       console.log("hubo un problema al obtener  la petición fetch:" + error.message);
+                   });
+
+
+            selectorAnimal.addEventListener('change', function () {
+                idAnimal = $('select[id=ejemplarDropDown]').val();
+
+            });
+
+        });
+    </script>
+
+    }

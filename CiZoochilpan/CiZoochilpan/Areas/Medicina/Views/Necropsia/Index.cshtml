@@ -1,0 +1,125 @@
+﻿@model IEnumerable<CiZoochilpan.Areas.Medicina.Models.NecropsiaModelView>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times; </span> </button>
+        @TempData["Success"].ToString()
+    </div>
+}
+else if (TempData["Error"] != null)
+{
+
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times;  </span> </button>
+        @TempData["Error"].ToString()
+    </div>
+}
+
+
+<div class="col-md-18">
+    <div class="panel panel-default">
+        <div class="panel-heading"> <center><h3 class="opcion_iluminada"> Gestión de Necropsias </h3> </center> </div>
+        <div class="panel-body">
+            <a href="@Url.Action("Create", "Necropsia" )" class="btn btn-success btn-xl">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </a>
+
+            <form method="get" class="navbar-form navbar-right" role="search" asp-controller="HojaProfilaxis" asp-action="Index">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="textoBuscar" placeholder="Buscar..." asp-for="textoBuscar" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search"> </span>
+                            <i class="fa fa-search">
+                            </i>
+                        </button>
+                    </span>
+                </div>
+            </form>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.lugar)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.diagnosticoMuerte)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.marcaje)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nombrePropio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nombreComun)
+                    </th>
+
+                    <th>
+
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lugar)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.diagnosticoMuerte)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.marcaje)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombrePropio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombreComun)
+                        </td>
+
+
+
+                        <td>
+                            <a href="@Url.Action("Edit", "Necropsia", new { id= item.id } )" class="btn btn-primary btn-xs">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </a>
+                            <a href="@Url.Action("Delete", "Necropsia", new { id= item.id }  )" class="btn btn-danger btn-xs" onclick="return Confirmacion();">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function Confirmacion() {
+            var flag = confirm('Estas seguro de borrar este registro?');
+            if (flag) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+    
+    }

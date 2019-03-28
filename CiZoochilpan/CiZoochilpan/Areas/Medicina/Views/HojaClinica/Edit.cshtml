@@ -238,7 +238,7 @@
                 var numEjemplares = 0, numVeterinarios= 0,count=0;
                 var modelo = @Html.Raw(Json.Encode(Model));
               
-                fetch('http://tanathoz-001-site1.ctempurl.com/api/Ejemplar')
+                fetch('http://tanathos-001-site1.dtempurl.com/api/Ejemplar')
                     .then(function (response) {
                         return response.json();
                     })
@@ -268,7 +268,7 @@
                         console.log("hubo un problema al obtener  la petición fetch:" + error.message);
                     });
 
-                fetch('http://tanathoz-001-site1.ctempurl.com/api/Farmaco')
+                fetch('http://tanathos-001-site1.dtempurl.com/api/Farmaco')
                     .then(function (response) {
                         return response.json();
                     })
@@ -284,7 +284,7 @@
                     })
 
 
-                fetch('http://tanathoz-001-site1.ctempurl.com/api/Veterinario')
+                fetch('http://tanathos-001-site1.dtempurl.com/api/Veterinario')
                     .then(function (response) {
                         return response.json();
                     })
@@ -311,7 +311,7 @@
                         console.log("hubo un problema al obtener  la petición fetch:" + error.message);
                     });
 
-                fetch('http://tanathoz-001-site1.ctempurl.com/api/HojaFarmaco?idHoja=' + modelo.hojas.id +'')
+                fetch('http://tanathos-001-site1.dtempurl.com/api/HojaFarmaco?idHoja=' + modelo.hojas.id +'')
                     .then(function (response) {
                         return response.json();
                         //Continuar con el servicio de cargarNumClinica en el archivo formActualiza
@@ -333,7 +333,7 @@
 
                 selectorFarmaco.addEventListener('change', function () {
                     idFarmaco = $('select[id=farmacoDropDown]').val();
-                    fetch('http://tanathoz-001-site1.ctempurl.com/api/Farmaco?id=' + idFarmaco)
+                    fetch('http://tanathos-001-site1.dtempurl.com/api/Farmaco?id=' + idFarmaco)
                         .then(function (response) {
                             return response.json();
                         })
@@ -365,17 +365,33 @@
                     $("#farmacos_frecuencia").val('');
                     $("#farmacos_fechaAplicacion").val('');
                     event.preventDefault();
-                    console.log("" + idClinica + "" + idFar + ""+ dosisFar + "" + frecuenciaFar + "" + fechaFar);
-                    $.ajax({
-                        url: 'http://tanathoz-001-site1.ctempurl.com/api/HojaFarmaco',
-                        type: "Put",
-                        dataType: 'json',
-                        data: { idClinica: idClinica, idFarmaco: idFar, dosis: dosisFar, frecuencia: frecuenciaFar, fechaAplicacion: fechaFar },
-                        success: function (response) {
-                            console.log("exitos prros");
-                        }
-                    });
+
+                   
+
                     
+                  /*  putRequest('http://localhost:49770/api/HojaFarmaco', { idClinica: idClinica, idFarmaco: idFar, dosis: dosisFar, frecuencia: frecuenciaFar, fechaAplicacion: fechaFar })
+                        .then(data => console.log(data))
+                        .catch(error => console.error(error))
+                    function putRequest(url, data) {
+                        return fetch(url, {
+                          
+                            headers: new Headers({
+                                'X-My-Custom-Header': 'application/json',
+                            })
+                        })
+                            .then(response => response.json())
+                    }
+                    
+                    
+                    
+                    
+                    */
+                    
+
+               
+
+
+
                 });
 
                 $(function () {
@@ -422,17 +438,17 @@
 
                             contador++;
                         });
-
+                       
                         var arregloDeCadenas = valores.split(';');
                         var nuevaCadena = valores.replace(/;/g, ',');
                         var arregloDatos = nuevaCadena.split(',');
                         var paso = 0;
 
-
+                        console.log("" + idClinica + "" + arregloDatos[paso] + "" + arregloDatos[paso + 3] + "" + arregloDatos[paso + 4] + "" + arregloDatos[paso +5]);
+                       
                         for (i = 0; i < arregloDeCadenas.length - 1; i++) {
-                            alert("a la cara");
-
-                            putRequest('http://localhost:49770/api/HojaFarmaco?', { idClinica: idClinica, idFarmaco: arregloDatos[paso], dosis: arregloDatos[paso + 3], frecuencia: arregloDatos[paso + 4], fechaAplicacion: arregloDatos[paso + 5] })
+                           
+                            putRequest('http://tanathos-001-site1.dtempurl.com/api/HojaFarmaco?', { idClinica: idClinica, idFarmaco: arregloDatos[paso], dosis: arregloDatos[paso + 3], frecuencia: arregloDatos[paso + 4], fechaAplicacion: arregloDatos[paso + 5] })
                                 .then(data => console.log(data))
                                 .catch(error => console.error(error))
                             function putRequest(url, data) {
@@ -448,6 +464,7 @@
                             }
                             paso += 7;
                         }
+                        
                     }
                 });
 
